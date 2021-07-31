@@ -20,6 +20,13 @@ def upload(request):
         context['url'] = fs.url(name)
     return render(request, 'library/upload.html', context)
 
+def searchbar(request):
+    if request.method=="GET":
+        search = request.GET.get('search')
+        book = Book.objects.all().filter(title=search)
+        return render(request, 'library/search.html',{'book':book})
+
+
 
 def book_list(request):
     books = Book.objects.all()
@@ -58,3 +65,6 @@ def delete_book(request, pk):
 #     form_class = BookForm
 #     success_url = reverse_lazy('class_book_list')
 #     template_name = 'upload_book.html'
+
+
+

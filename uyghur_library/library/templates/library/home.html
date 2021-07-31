@@ -10,9 +10,12 @@
         <a class="nav-item nav-link" href="{% url 'login' %}">Upload</a>
         {% endif %}
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Search</a>
-    </li>
+    <center>
+    <form action="{% url 'search' %}" method="get">
+        <input type ="text" name="search"/>
+        <button type="submit">Search</button>
+    </form>
+    </center>
 
 {% endblock %}
 
