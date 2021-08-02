@@ -14,11 +14,19 @@ def about(request):
 def upload(request):
     context = {}
     if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request, 'library/upload.html', context)
+        # call check_book_isbn f(x)
+        # store returned variable 
+        # if not returnedvariable
+        isbn_num = BookForm.check_book_isbn(request)
+        if not isbn_num:
+            print("Book doesn't exist")
+            uploaded_file = request.FILES['document']
+            fs = FileSystemStorage()
+            name = fs.save(uploaded_file.name, uploaded_file)
+            context['url'] = fs.url(name)    
+            return render(request, 'library/upload.html', context)
+        else:
+            return redirect(request, 'library/upload.html', context)
 
 def searchbar(request):
     if request.method=="GET":
@@ -46,6 +54,7 @@ def upload_book(request):
     return render(request, 'library/upload_book.html', {
         'form': form
     })
+
 
 def delete_book(request, pk):
     if request.method == 'POST':

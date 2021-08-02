@@ -1,6 +1,7 @@
 from django.db import models
 
 class Book(models.Model):
+    ISBN = models.CharField(max_length=100, default='')
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='books/pdfs/')
