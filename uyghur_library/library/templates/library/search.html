@@ -1,11 +1,40 @@
-{{ error }}
+{% extends 'library/base.html' %}
+{% block content %}
 {% if book %}
     <center><h>Search Result Founds</h></center>
-    <br>
-    {% for book in pdfs %}
-    <center><h2><a href="/media/books/pdfs/">{{ book.title }}</a></h2></center>
-    {% endfor %}
+    <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>Cover</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Download</th>
+          </tr>
+        </thead>
+        <tbody>
 
+    {% for pdf in book %}
+    <tr>
+        <td>
+          {% if pdf.cover %}
+            <img src="{{ pdf.cover.url }}" alt="{{ pdf.title }}" style="width:100px;">
+          {% else %}
+            <span class="text-muted">No cover</span>
+          {% endif %}
+        </td>
+        <td><a href="{% url 'book_info' %}">{{ pdf.title }}</a></td>
+        <td>{{ pdf.author }}</td>
+        <td>
+        <a href="{{ pdf.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
+        </td>
+
+      </tr>
+    <!-- <center><h2><a href="https://uyghur-library.s3.amazonaws.com/books/pdfs/">{{ pdf.title }}</a></h2></center> -->
+    {% endfor %}
+</tbody>
+</table>
 {% else %}
     <center><h1>Nothing found!</h1></center>
 {% endif %}
+
+{% endblock %}

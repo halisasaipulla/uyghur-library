@@ -1,27 +1,12 @@
 {% extends 'library/base.html' %}
 {% block content %}
-
-  {% block content_header %}
-    <h2>Books</h2>
-
-      <form action="{% url 'search' %}" method="get">
-          <input name="q" type="text" placeholder="Search...">
-          <button type="submit">Search</button>
-      </form>        
-
-    <p>
-      <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload book</a>
-    </p>
-  {% endblock %}
-
   <table class="table mb-0">
     <thead>
       <tr>
-        <th>Cover</th>
+        <th>{{ pdf.title }}</th>
         <th>Title</th>
         <th>Author</th>
         <th>Download</th>
-        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -41,14 +26,9 @@
               Download PDF
             </a>
           </td>
-          <td>
-            <form method="post" action="{% url 'delete_book' book.pk %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
-          </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+  
 {% endblock %}

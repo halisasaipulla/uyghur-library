@@ -22,11 +22,9 @@ def upload(request):
 
 def searchbar(request):
     if request.method=="GET":
-        search = request.GET.get('search')
-        book = Book.objects.all().filter(title=search)
-        return render(request, 'library/search.html',{'book':book})
-
-
+        search = request.GET.get('q')
+        book = Book.objects.all().filter(title__icontains=search)
+        return render(request, 'library/search.html', {'book':book})
 
 def book_list(request):
     books = Book.objects.all()
@@ -34,6 +32,8 @@ def book_list(request):
         'books': books
     })
 
+def book_info(request):
+    return render(request, 'library/book_info.html')
 
 def upload_book(request):
     if request.method == 'POST':
@@ -46,7 +46,6 @@ def upload_book(request):
     return render(request, 'library/upload_book.html', {
         'form': form
     })
-
 
 def delete_book(request, pk):
     if request.method == 'POST':

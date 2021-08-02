@@ -3,6 +3,12 @@
 {% block content %}
     
     <h1>Uyghur Library</h1>
+    <center>
+    <form action="{% url 'search' %}" method="get">
+        <input name="q" type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>        
+    </center>
     <li class="nav-item">
         {% if user.is_authenticated %}
         <a class="nav-link" href="{% url 'upload_book' %}">Upload</a>
@@ -10,13 +16,6 @@
         <a class="nav-item nav-link" href="{% url 'login' %}">Upload</a>
         {% endif %}
     </li>
-    <center>
-    <form action="{% url 'search' %}" method="get">
-        <input type ="text" name="search"/>
-        <button type="submit">Search</button>
-    </form>
-    </center>
-
 {% endblock %}
 
 
