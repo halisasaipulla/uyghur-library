@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from .forms import BookForm
 from .models import Book
+# from django.utils.datastructures import MultiValueDictKeyError
 
 
 def home(request):
@@ -59,7 +60,9 @@ def upload_book(request):
                     ISBN=request.POST['ISBN'], 
                     author=request.POST['author'], 
                     title=request.POST['title'], 
-                    pdf=request.POST['pdf'],
+                    # pdf=request.POST['pdf'],
+                    pdf = request.POST.get('pdf', False),
+                    
                     cover=request.POST['cover'])
                 form.save()
             else:
