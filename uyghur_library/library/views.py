@@ -17,17 +17,21 @@ def upload(request):
         # call check_book_isbn f(x)
         # store returned variable 
         # if not returnedvariable
-        isbn_num = BookForm.check_book_isbn(request)
-        if not isbn_num:
-            print("Book doesn't exist")
-            uploaded_file = request.FILES['document']
-            fs = FileSystemStorage()
-            name = fs.save(uploaded_file.name, uploaded_file)
-            context['url'] = fs.url(name)    
-            return render(request, 'library/upload.html', context)
-        else:
-            return redirect(request, 'library/upload.html', context)
-
+        # isbn_num = BookForm.check_book_isbn(request)
+        # if not isbn_num:
+        #     print("Book doesn't exist")
+        #     uploaded_file = request.FILES['document']
+        #     fs = FileSystemStorage()
+        #     name = fs.save(uploaded_file.name, uploaded_file)
+        #     context['url'] = fs.url(name)    
+        #     return render(request, 'library/upload.html', context)
+        # else:
+        #     return redirect(request, 'library/upload.html', context)
+        uploaded_file = request.FILES['document']
+        fs = FileSystemStorage()
+        name = fs.save(uploaded_file.name, uploaded_file)
+        context['url'] = fs.url(name)    
+        return render(request, 'library/upload.html', context)
 def searchbar(request):
     if request.method=="GET":
         search = request.GET.get('q')
@@ -47,8 +51,23 @@ def upload_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('book_list')
+            # form.save()
+            
+            check_book = Book.objects.filter(ISBN=request.POST['ISBN'])
+            if not check_book:
+                Book.objects.create(
+                    ISBN=request.POST['ISBN'], 
+                    author=request.POST['author'], 
+                    title=request.POST['title'], 
+                    pdf=request.POST['pdf'],
+                    cover=request.POST['cover'])
+                form.save()
+            else:
+                print('Book already exists')
+                redirect('book_list')
+        return redirect('book_list')
+        # form.save()
+   
     else:
         form = BookForm()
     return render(request, 'library/upload_book.html', {
