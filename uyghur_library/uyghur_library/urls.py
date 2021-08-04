@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('library.urls')),
     path('about/', views.about, name='about'),
-    path('upload/', views.upload, name='upload'),
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),
     path('books/info', views.book_info, name='book_info'),
