@@ -11,8 +11,9 @@
           </tr>
         </thead>
         <tbody>
-
     {% for pdf in book %}
+    {% if pdf.ISBN %}
+
     <tr>
         <td>
           {% if pdf.cover %}
@@ -21,10 +22,12 @@
             <span class="text-muted">No cover</span>
           {% endif %}
         </td>
-        <td><a href="{% url 'book_info' %}">{{ pdf.title }}</a></td>
+        <td><a href="{% url 'book_info' pdf.ISBN %}">{{ pdf.title }}</a></td>
         <td>{{ pdf.author }}</td>
       </tr>
+      {% endif %}
     {% endfor %}
+
 </tbody>
 </table>
 {% else %}

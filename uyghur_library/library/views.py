@@ -1,5 +1,5 @@
 from os import name
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
 from .forms import BookForm
@@ -34,8 +34,9 @@ def book_list(request):
         'books': books
     })
 
-def book_info(request):
-    return render(request, 'library/book_info.html')
+def book_info(request, isbn):
+    book = get_object_or_404(Book, ISBN=isbn)
+    return render(request, 'library/book_info.html', {'book':book})
 
 def upload_book(request):
     if request.method == 'POST':
