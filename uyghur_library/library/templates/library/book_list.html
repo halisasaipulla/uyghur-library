@@ -4,15 +4,12 @@
 
   {% block content_header %}
     <h2>{% translate "Library" %}</h2>
-
-      <form action="{% url 'search' %}" method="get">
-          <input name="q" type="text" placeholder="Search...">
-          <button type="submit">Search</button>
-      </form>        
-
-    <p>
-      <a href="{% url 'upload_book' %}" class="btn btn-primary">Upload book</a>
-    </p>
+    <form action="{% url 'search' %}" method="get">
+      <div class="bar">
+        <input name="q" class="searchbar" type="text" title="Search" placeholder="Search ...">
+        <a><button class="button" type="submit">🔍</button></a>
+      </div>
+    </form>        
   {% endblock %}
 
   <table class="table mb-0">

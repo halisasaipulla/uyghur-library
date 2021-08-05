@@ -11,57 +11,42 @@
 </head>
 
 <body>
-  
-  <nav class="navbar navbar-expand-lg navbar-light mb-5" style="background-color:hsl(0, 0%, 100%)">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'library-home' %}">Uyghur {% translate "Library" %}</a>
+  <center>
+  <header>
+    <ul>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent">
-            <ul class="nav justify-content-end">
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Language
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  {% get_current_language as LANGUAGE_CODE %}
-                  {% get_available_languages as LANGUAGES %}
-                  {% get_language_info_list for LANGUAGES as languages %}
-                  {% for lang in languages %}
-                    <li>
-                      <a class="dropdown-item" href="/{{ lang.code }}/">{{ lang.name_local }}</a>
-                    </li>
-                  {% endfor %}
-                </div>
-              </div>
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'book_list' %}">Books</a>
-            </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Register</a>
-          </li>
-          {% endif %}
+      {% if user.is_authenticated %}
+      <li><a class="nav-link" href="{% url 'logout' %}">Sign out</a></li>          
+      <li><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+      {% else %}
+      <li><a class="nav-link" href="{% url 'login' %}"><button class="signbutton" type="button">Sign in</button></a></li>
+      <li><a class="nav-link" href="{% url 'register' %}">Sign up</a></li>
+      {% endif %}
+      <li><a class="nav-link" href="{% url 'book_list' %}">Books</a></li>           
+      <li>
+        <ul>
+          <div>
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            🌎
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" aria-haspopup="true" aria-expanded="false">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+                {% for lang in languages %}
+                <li><a class="dropdown-item" href="/{{ lang.code }}/">{{ lang.name_local }}</a></li>
+                {% endfor %}
+            </div>
+          </div>
         </ul>
-      </div>
-    </div>
-  </nav>
+      </li>
+      <li class="home-button"><a class="navbar-brand" href="{% url 'library-home' %}">Uyghur {% translate "Library" %}</a></li>
+    </ul>
+</header>
 
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-10 col-md-12">
+      <div>
         <div class="card mb-4">
           <div class="card-body">
             {% block content %}
@@ -72,6 +57,7 @@
     </div>
   </div>
 
+</center>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

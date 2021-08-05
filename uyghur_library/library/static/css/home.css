@@ -9,16 +9,12 @@ li {
 }
 
 li a {
-  color: cornflowerblue;
+  color: #000;
   display: block;
   text-align: center;
   padding: 10px 10px;
   text-decoration: none;
   font-size:14px;
-}
-
-.home-button {
-  float: left;
 }
 li a:hover {
   text-decoration: underline;
@@ -36,15 +32,28 @@ li a:hover {
   padding:7px 10px;
   position:relative;
   bottom:7px;
-  font-weight:bold;
+  font-weight:bolder;
 }
 .logo{
   margin-top:200px;
   margin-bottom:20px;
 }
+
+.home-title {
+  font-size: 65px;
+
+}
+a {
+  color: cornflowerblue;
+}
+
+.home-title:hover {
+  font-size: 65px;
+  text-decoration: none;
+}
 .bar{
   margin:0 auto;
-  width:350px;
+  width:575px;
   border-radius:30px;
   border:1px solid #dcdcdc;
 }
@@ -58,7 +67,7 @@ li a:hover {
 .searchbar{
   height:45px;
   border:none;
-  width:200px;
+  width:500px;
   font-size:16px;
   outline: none;
   
@@ -67,19 +76,30 @@ li a:hover {
   height:20px;
   position:relative;
   top:5px;
-
+  left:10px;
 }
-
+.buttons{
+  margin-top:30px;
+  display: inline-flex;
+}
 .button{
+  background-color: #f5f5f5;
   border:none;
+  color:#707070;
   font-size:15px;
+  padding: 10px 30px;
+  margin:5px;
+  border-radius:4px;
+  outline:none;
 }
 
 .button:hover{
   border: 1px solid #c8c8c8;
-
+  padding: 9px 19px;
+  color:#808080;
 }
 .button:focus{
   border:1px solid #4885ed;
+  padding: 9px 19px;
 }
 
