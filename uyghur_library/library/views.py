@@ -1,20 +1,33 @@
 from os import name
 from django.shortcuts import render, redirect
-from django.core.files.storage import FileSystemStorage
+from django.utils.translation import gettext as _
+from django.utils.translation import get_language, activate, gettext
 from .forms import BookForm
 from .models import Book
+from django.contrib import messages
 
 def home(request):
-    return render(request, 'library/home.html')
+    trans = translate(language='fr')
+    return render(request, 'library/home.html', {'trans': trans})
+
+def translate(language):
+    current_language = get_language()
+    try:
+        activate(language)
+        text=gettext('Library')
+    finally:
+        activate(current_language)
+    return text
 
 def about(request):
     return render(request, 'library/about.html')
 
 def searchbar(request):
+    trans = translate(language='fr')
     if request.method=="GET":
         search = request.GET.get('q')
         book = Book.objects.all().filter(title__icontains=search)
-        return render(request, 'library/search.html', {'book':book})
+        return render(request, 'library/search.html', {'trans': trans}, {'book':book})
 
 def book_list(request):
     books = Book.objects.all()
@@ -32,9 +45,10 @@ def upload_book(request):
             check_book = Book.objects.filter(ISBN=request.POST['ISBN'])
             if not check_book:
                 form.save()
-            else:
                 return redirect('book_list')
-        return redirect('book_list')
+            else:
+                messages.error(request, 'Book already exists.')
+                return render(request, 'library/upload_book.html', {'form': BookForm()})
     else:
         form = BookForm()
     return render(request, 'library/upload_book.html', {

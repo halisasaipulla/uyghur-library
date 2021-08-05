@@ -1,12 +1,18 @@
 {% extends 'library/base.html' %}
-
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 {% block content %}
     <h2>Upload book</h2>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <a {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Upload book</button>
+    <button type="submit" class="btn btn-primary">Upload {% translate "Library" %}</button>
     </form>
 {% endblock %}

@@ -20,9 +20,12 @@ from library import views
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(_('admin/'), admin.site.urls),
     path('', include('library.urls')),
     path('about/', views.about, name='about'),
     path('search/', views.searchbar, name='search'),
@@ -36,6 +39,9 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 ]
 
+urlpatterns += i18n_patterns (
+    path('', include('library.urls')),
+)
 # just for development purposes
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

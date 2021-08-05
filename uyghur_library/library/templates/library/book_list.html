@@ -1,8 +1,9 @@
 {% extends 'library/base.html' %}
+{% load i18n %}
 {% block content %}
 
   {% block content_header %}
-    <h2>Books</h2>
+    <h2>{% translate "Library" %}</h2>
 
       <form action="{% url 'search' %}" method="get">
           <input name="q" type="text" placeholder="Search...">

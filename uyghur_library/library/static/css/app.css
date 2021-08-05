@@ -1,8 +1,25 @@
 body {
-    background-color: #5c848e;
+    height: 100vh;
+    background-color: #ffffff;
   }
 
+.home-page-title{
+    font-size: 50px;
+    color: none;
+    text-decoration: none;
+}
+
+.home-page-title:hover{
+  text-decoration: none;
+  color: none;
+}
 
 li {
     list-style-type: none;
+}
+
+input {
+  width: 96%;
+  display: inline-block;
+
 }
