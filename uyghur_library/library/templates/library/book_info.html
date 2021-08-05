@@ -1,34 +1,18 @@
 {% extends 'library/base.html' %}
 {% block content %}
-  <table class="table mb-0">
-    <thead>
-      <tr>
-        <th>{{ pdf.title }}</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Download</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for book in books %}
+    <table class="table mb-0">
+      <thead>
         <tr>
-          <td>
-            {% if book.cover %}
-              <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
-            {% else %}
-              <span class="text-muted">No cover</span>
-            {% endif %}
-          </td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>
-            <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
-              Download PDF
-            </a>
-          </td>
+          <th>{{ book.title }}</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Download</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
+      </thead>
+      <tbody>
+        <td>
+          <a href="{{ book.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
+        </td>
+      </tbody>
+    </table>
 {% endblock %}

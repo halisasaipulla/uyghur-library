@@ -23,11 +23,10 @@ def about(request):
     return render(request, 'library/about.html')
 
 def searchbar(request):
-    trans = translate(language='fr')
     if request.method=="GET":
         search = request.GET.get('q')
         book = Book.objects.all().filter(title__icontains=search)
-        return render(request, 'library/search.html', {'trans': trans}, {'book':book})
+        return render(request, 'library/search.html', {'book':book})
 
 def book_list(request):
     books = Book.objects.all()
