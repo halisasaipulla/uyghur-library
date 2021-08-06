@@ -12,7 +12,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('', views.home, name="library-home"),
-    path('about/', views.about, name='about'),
+    path('faq/', views.faq, name='faq'),
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),
     path('books/info/<str:isbn>', views.book_info, name='book_info'),

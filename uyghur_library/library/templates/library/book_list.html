@@ -9,7 +9,21 @@
         <input name="q" class="searchbar" type="text" title="Search" placeholder="Search ...">
         <a><button class="button" type="submit">🔍</button></a>
       </div>
-    </form>        
+      <div>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2" aria-haspopup="true" aria-expanded="false">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+            {% for lang in languages %}
+            <li><a class="dropdown-item" href="/{{ lang.code }}/">{{ lang.name_local }}</a></li>
+            {% endfor %}
+        </div>
+      </div>
+    </form>
+
   {% endblock %}
 
   <table class="table mb-0">
@@ -18,8 +32,8 @@
         <th>Cover</th>
         <th>Title</th>
         <th>Author</th>
+        <th>Category</th>
         <th>Download</th>
-        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -34,16 +48,11 @@
           </td>
           <td>{{ book.title }}</td>
           <td>{{ book.author }}</td>
+          <td>{{ book.category }}</td>
           <td>
             <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
               Download PDF
             </a>
-          </td>
-          <td>
-            <form method="post" action="{% url 'delete_book' book.pk %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
           </td>
         </tr>
       {% endfor %}

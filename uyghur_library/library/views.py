@@ -32,14 +32,18 @@ def translate(language):
         activate(current_language)
     return text
 
-def about(request):
-    return render(request, 'library/about.html')
+def faq(request):
+    return render(request, 'library/faq.html')
 
 def searchbar(request):
     if request.method=="GET":
         search = request.GET.get('q')
-        book = Book.objects.all().filter(title__icontains=search)
-        return render(request, 'library/search.html', {'book':book})
+        if search:
+            book = Book.objects.all().filter(title__icontains=search)
+            return render(request, 'library/search.html', {'book':book})
+        else:
+            return render(request, 'library/home.html')
+
 
 def book_list(request):
     books = Book.objects.all()

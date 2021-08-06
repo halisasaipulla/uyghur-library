@@ -4,4 +4,7 @@ from .models import Book
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('ISBN', 'title', 'author', 'pdf', 'cover')
+        fields = ('ISBN', 'title', 'author', 'pdf', 'cover', 'category')
+
+
+# include a drop down menu for category and save it to database 
