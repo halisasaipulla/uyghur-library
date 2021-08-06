@@ -44,7 +44,6 @@ def searchbar(request):
         else:
             return render(request, 'library/home.html')
 
-
 def book_list(request):
     books = Book.objects.all()
     return render(request, 'library/book_list.html', {
@@ -53,6 +52,25 @@ def book_list(request):
 
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        data = {
+            'name': name,
+            'email': email,
+            'subject': subject,
+            'message': message,
+        }
+        message = '''
+        New message: {}
+
+        From: {}
+        '''.format(data['message'], data['email'])
+
+        message.save()
     return render(request, 'library/book_info.html', {'book':book})
 
 def upload_book(request):

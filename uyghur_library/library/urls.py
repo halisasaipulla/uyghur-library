@@ -2,13 +2,13 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from users import views as user_views
-# from library.views import (
-#     PostListView,
-#     PostDetailView,
-#     PostCreateView,
-#     PostUpdateView,
-#     PostDeleteView
-# )
+from library.views import (
+    # PostListView,
+    # PostDetailView,
+    PostCreateView,
+    # PostUpdateView,
+    # PostDeleteView
+)
 
 urlpatterns = [
     path('', views.home, name="library-home"),
@@ -18,7 +18,7 @@ urlpatterns = [
     path('books/info/<str:isbn>', views.book_info, name='book_info'),
     # path('', PostListView.as_view(), name='book_info2'),
     # path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
-    # path('books/info/<str:isbn>/new/', PostCreateView.as_view(), name='post-create'),
+    path('books/info/<str:isbn>/new/', PostCreateView.as_view(), name='post-create'),
     # path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     # path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('books/upload/', views.upload_book, name='upload_book'),

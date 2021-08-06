@@ -22,13 +22,13 @@ from django.conf.urls.static import static
 from users import views as user_views
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
-# from library.views import (
-#     PostListView,
-#     PostDetailView,
-#     PostCreateView,
-#     PostUpdateView,
-#     PostDeleteView
-# )
+from library.views import (
+    # PostListView,
+    # PostDetailView,
+    PostCreateView,
+    # PostUpdateView,
+    # PostDeleteView
+)
 
 urlpatterns = [
     path(_('admin/'), admin.site.urls),
@@ -39,7 +39,7 @@ urlpatterns = [
     path('books/info/<str:isbn>', views.book_info, name='book_info'),
     # path('', PostListView.as_view(), name='book_info'),
     # path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
-    # path('books/info/<str:isbn>/new/', PostCreateView.as_view(), name='post-create'),
+    path('books/info/<str:isbn>/new/', PostCreateView.as_view(), name='post-create'),
     # path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     # path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('books/upload/', views.upload_book, name='upload_book'),

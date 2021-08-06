@@ -17,7 +17,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='books/pdfs/')
-    cover = models.ImageField(upload_to='books/covers/', default='books/covers/default.png', blank=True,)
+    cover = models.ImageField(upload_to='books/covers/', default='books/covers/default.png')
     category = models.CharField(max_length=6, choices=CATEGORIES, default='green')
 
 

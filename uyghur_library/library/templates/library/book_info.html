@@ -14,17 +14,28 @@
           <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
         </td>
         <td>
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Write Reviews</legend>
-                    {{ form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Post</button>
+          <form method="POST">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Write reviews</legend>
+                  <div class="form-group">
+                    <label for="fname" name ="name">Name</label>
+                    <input type="text" id = "fname" class="form-control"  placeholder="Your name" name="name" >
+    
+                    <label for="exampleInputEmail1">Email address</label>  
+                    <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter email" name="email"> 
+    
+                    <label for="Subject">Subject</label>
+                    <textarea class="form-control" id="Subject" placeholder="subject" name="subject"></textarea>
+                    
+                    <label for="Subject">Message</label>
+                    <textarea class="form-control" id="Subject" placeholder="Message" name="message"></textarea>
                 </div>
-            </form>
-
+              </fieldset>
+              <div class="form-group">
+                  <button class="btn btn-outline-info" type="submit">Post</button>
+              </div>
+          </form>
         </td>
     </tbody>
     </table>

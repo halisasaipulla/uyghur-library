@@ -2,6 +2,8 @@
 {% load crispy_forms_tags %}
 
 <div class="content-section">
+    <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
+
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
