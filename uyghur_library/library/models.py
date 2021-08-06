@@ -1,5 +1,8 @@
 from django.db import models
 # from django.contrib.auth.models import User
+from django.utils import timezone
+from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Book(models.Model):
     ISBN = models.CharField(max_length=100, default='')
@@ -17,13 +20,14 @@ class Book(models.Model):
         self.cover.delete()
         super().delete(*args, **kwargs)
 
-# class Comment(models.Model):
-#     title = models.CharField(max_length=255)
-#     content = models.TextField()
-#     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments', related_query_name='comment')
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', related_query_name='comment')
-#     created = models.DateField(auto_now_add=True)
-#     updated = models.DateField(auto_now=True)
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-#     def __str__(self):
-#         return self.title
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})

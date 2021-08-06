@@ -1,0 +1,22 @@
+{% extends "library/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        contact_us
+        <form class="" action="#">
+            <div class="form-group">
+                <label for="fname">Your Name</label>
+                <input type="text" id = "fname" class="form-control"  placeholder="Your name">
+
+                <label for="exampleInputEmail1">Email address</label>  
+                <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter email"> 
+
+                <label for="Subject">Subject</label>
+                <textarea class="form-control" id="Subject" placeholder="subject">
+            </div>
+            
+        
+            <button type="submit" class="btn btn-success btn-lg mt-1 m1-4">Submit</button>
+        </form>
+    </div>
+{% endblock content %}
