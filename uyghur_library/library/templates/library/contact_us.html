@@ -2,20 +2,20 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
-        contact_us
-        <form class="" action="#">
+        <form method="POST" action="" class="contact-form">
+            {% csrf_token %} 
             <div class="form-group">
-                <label for="fname">Your Name</label>
-                <input type="text" id = "fname" class="form-control"  placeholder="Your name">
+                <label for="fname" name ="name">Name</label>
+                <input type="text" id = "fname" class="form-control"  placeholder="Your name" name="name" >
 
                 <label for="exampleInputEmail1">Email address</label>  
-                <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter email"> 
+                <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter email" name="email"> 
 
                 <label for="Subject">Subject</label>
-                <textarea class="form-control" id="Subject" placeholder="subject">
+                <textarea class="form-control" id="Subject" placeholder="subject" name="subject"></textarea>
+                <label for="Subject">Message</label>
+                <textarea class="form-control" id="Subject" placeholder="Message" name="message"></textarea>
             </div>
-            
-        
             <button type="submit" class="btn btn-success btn-lg mt-1 m1-4">Submit</button>
         </form>
     </div>

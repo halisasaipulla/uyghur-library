@@ -58,8 +58,12 @@
           {% endif %}
           <a class="nav-item nav-link"><button class="button" type="submit">Search</button></a>
         </div> 
-      </form> 
-
+        <footer>
+          <ul>
+            <li><a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a></li>           
+            <li><a class="nav-link" href="{% url 'book_list' %}">FAQ</a></li>           
+          </ul>
+        </footer>
   </center>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

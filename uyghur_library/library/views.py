@@ -16,6 +16,9 @@ from django.views.generic import (
 )
 from .models import Post
 
+from django.http import HttpResponse
+from django.core.mail import send_mail
+
 def home(request):
     trans = translate(language='fr')
     return render(request, 'library/home.html', {'trans': trans})
@@ -70,6 +73,28 @@ def delete_book(request, pk):
         book = Book.objects.get(pk=pk)
         book.delete()
     return redirect('book_list')
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        data = {
+            'name': name,
+            'email': email,
+            'subject': subject,
+            'message': message,
+        }
+        message = '''
+        New message: {}
+
+        From: {}
+        '''.format(data['message'], data['email'])
+
+        send_mail(data['subject'], message, '', ['capstoneprojectadac15@gmail.com'])
+    return render(request, 'library/contact_us.html', {})
 
 
 
