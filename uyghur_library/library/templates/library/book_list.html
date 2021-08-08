@@ -2,29 +2,27 @@
 {% load i18n %}
 {% block content %}
 
-  {% block content_header %}
     <h2>{% translate "Library" %}</h2>
     <form action="{% url 'search' %}" method="get">
       <div class="bar">
         <input name="q" class="searchbar" type="text" title="Search" placeholder="Search ...">
-        <a><button class="button" type="submit">🔍</button></a>
+        <button type="button" class="btn btn-link nounderline">🔍</button>
       </div>
-      <div>
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Category
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          category
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2" aria-haspopup="true" aria-expanded="false">
-          {% get_current_language as LANGUAGE_CODE %}
-          {% get_available_languages as LANGUAGES %}
-          {% get_language_info_list for LANGUAGES as languages %}
-            {% for lang in languages %}
-            <li><a class="dropdown-item" href="/{{ lang.code }}/">{{ lang.name_local }}</a></li>
-            {% endfor %}
-        </div>
+        <div class="dropdown-menu">
+            <h6 class="dropdown-header">Category</h6>
+            <a href="{% url 'book_list' %}">All</a>
+                {% for category in categories %}
+                <a href="{% url 'book_list' %}?category={{ category.name}}">{{category.name}}</a>
+                {% endfor %}
+          </div>
+      </div>
       </div>
     </form>
 
-  {% endblock %}
 
   <table class="table mb-0">
     <thead>
@@ -46,7 +44,7 @@
               <span class="text-muted">No cover</span>
             {% endif %}
           </td>
-          <td>{{ book.title }}</td>
+          <td><a href="{% url 'book_info' book.ISBN %}">{{ book.title }}</a></td>
           <td>{{ book.author }}</td>
           <td>{{ book.category }}</td>
           <td>

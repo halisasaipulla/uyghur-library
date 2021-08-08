@@ -6,36 +6,41 @@
       <thead>
         <tr>
           <th>{{ book.title }}</th>
-          <th>Title</th>
         </tr>
       </thead>
       <tbody>
         <td>
-          <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
-        </td>
+          <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
+          <div class="col-md-4">
+            <div style="margin: 5px padding:2px">
+               Add Comments ({{ num_comments }})
+               <br>
+               <hr>
+   
+                   {% for comment in book.comments.all %}
+   
+                       <h5><strong>{{ comment.commenter_name }}</strong></h5>
+                       <p>{{ comment.comment_body }}</p>
+                       <p><small>{{ comment.date_added }}</small></p>
+   
+                      {% if request.user.username == comment.commenter_name %}
+
+                          <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">  Add Comment </a></p>
+                          <p><a class="btn btn-danger" href="{% url 'delete-comment' book.id %}">  Delete Comment </a></p>
+                         
+                         
+                       {% endif %}
+                       
+                       
+   
+                   {% endfor %}
+   
+       
+   
+            </div>
+         </div>
         <td>
-          <form method="POST">
-              {% csrf_token %}
-              <fieldset class="form-group">
-                  <legend class="border-bottom mb-4">Write reviews</legend>
-                  <div class="form-group">
-                    <label for="fname" name ="name">Name</label>
-                    <input type="text" id = "fname" class="form-control"  placeholder="Your name" name="name" >
-    
-                    <label for="exampleInputEmail1">Email address</label>  
-                    <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter email" name="email"> 
-    
-                    <label for="Subject">Subject</label>
-                    <textarea class="form-control" id="Subject" placeholder="subject" name="subject"></textarea>
-                    
-                    <label for="Subject">Message</label>
-                    <textarea class="form-control" id="Subject" placeholder="Message" name="message"></textarea>
-                </div>
-              </fieldset>
-              <div class="form-group">
-                  <button class="btn btn-outline-info" type="submit">Post</button>
-              </div>
-          </form>
+          <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
         </td>
     </tbody>
     </table>

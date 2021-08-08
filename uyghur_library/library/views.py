@@ -1,23 +1,13 @@
-from os import name
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
-from .forms import BookForm
-from .models import Book
+from .forms import BookForm, CommentForm
+from .models import Book, Category, Comment
 from django.contrib import messages
-
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView
-)
-from .models import Post
-
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from datetime import datetime
 from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
 def home(request):
     trans = translate(language='fr')
@@ -45,33 +35,54 @@ def searchbar(request):
             return render(request, 'library/home.html')
 
 def book_list(request):
-    books = Book.objects.all()
+    category = request.GET.get('category')
+    if category == None:
+        
+            books = Book.objects.all()
+    else:
+        books = Book.objects.filter(category__name=category)
+    categories = Category.objects.all()
     return render(request, 'library/book_list.html', {
-        'books': books
+        'books': books,
+        'categories':categories
     })
 
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
+    num_comments = Comment.objects.filter(book=book).count()
+    return render(request, 'library/book_info.html', {'book':book, 'num_comments': num_comments})
+
+
+def add_comment(request, pk):
+    book = get_object_or_404(Book, id=pk)
+
+    form = CommentForm(instance=book)
+
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            name = request.user.username
+            body = form.cleaned_data['comment_body']
+            c = Comment(book=book, commenter_name=name, comment_body=body, date_added=datetime.now())
+            c.save()
+            return redirect(reverse('book_info', args=[pk]))
+        else:
+            print('form is invalid')    
+    else:
+        form = CommentForm()    
 
-        data = {
-            'name': name,
-            'email': email,
-            'subject': subject,
-            'message': message,
-        }
-        message = '''
-        New message: {}
+    context = {
+        'form': form
+    }
 
-        From: {}
-        '''.format(data['message'], data['email'])
+    return render(request, 'library/add_comment.html', context)
 
-        message.save()
-    return render(request, 'library/book_info.html', {'book':book})
+
+def delete_comment(request, pk):
+    comment = Comment.objects.filter(book=pk).last()
+    book_id = comment.book.id
+    comment.delete()
+    return redirect(reverse('book_info', args=[book_id]))
 
 def upload_book(request):
     if request.method == 'POST':
@@ -89,12 +100,6 @@ def upload_book(request):
     return render(request, 'library/upload_book.html', {
         'form': form
     })
-
-def delete_book(request, pk):
-    if request.method == 'POST':
-        book = Book.objects.get(pk=pk)
-        book.delete()
-    return redirect('book_list')
 
 def contact(request):
     if request.method == 'POST':
@@ -117,51 +122,4 @@ def contact(request):
 
         send_mail(data['subject'], message, '', ['capstoneprojectadac15@gmail.com'])
     return render(request, 'library/contact_us.html', {})
-
-
-
-class PostListView(ListView):
-    model = Post
-    template_name = 'library/book_info.html'  # <app>/<model>_<viewtype>.html
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
-
-
-class PostDetailView(DetailView):
-    model = Post
-
-
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['title', 'content']
-    template_name = 'library/book_info.html'
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Post
-    fields = ['title', 'content']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
-
-
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Post
-    success_url = '/'
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
 

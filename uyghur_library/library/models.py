@@ -1,16 +1,7 @@
 from django.db import models
-# from django.contrib.auth.models import User
 from django.utils import timezone
-from django.contrib.auth.models import User
-from django.urls import reverse
 
-CATEGORIES = (
-    ('green','GREEN'),
-    ('blue', 'BLUE'),
-    ('red','RED'),
-    ('orange','ORANGE'),
-    ('black','BLACK'),
-)
+from django.urls import reverse
 
 class Book(models.Model):
     ISBN = models.CharField(max_length=100, default='')
@@ -18,8 +9,7 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='books/pdfs/')
     cover = models.ImageField(upload_to='books/covers/', default='books/covers/default.png')
-    category = models.CharField(max_length=6, choices=CATEGORIES, default='green')
-
+    category = models.ForeignKey('Category',on_delete=models.PROTECT,default=1)
 
     def __str__(self):
         return self.title
@@ -29,14 +19,16 @@ class Book(models.Model):
         self.cover.delete()
         super().delete(*args, **kwargs)
 
-class Post(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+class Comment(models.Model):
+    book = models.ForeignKey(Book, related_name ="comments", on_delete=models.CASCADE)
+    commenter_name = models.CharField(max_length=200)
+    comment_body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return '%s - %s' % (self.book.title, self.commenter_name)
+        
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name

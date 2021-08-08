@@ -25,7 +25,7 @@
           <li>
             <ul>
               <div>
-                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-link nounderline dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 🌎
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +48,7 @@
       <form action="{% url 'search' %}" method="get">
         <div class="bar">
           <input name="q" class="searchbar" type="text" title="Search" placeholder="Search ...">
-          <a>🔍</a>
+          <button type="button" class="btn btn-link nounderline">🔍</button>
         </div>
         <div class="buttons">
           {% if user.is_authenticated %}
