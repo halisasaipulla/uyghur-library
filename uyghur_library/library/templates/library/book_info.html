@@ -16,6 +16,14 @@
                Add Comments ({{ num_comments }})
                <br>
                <hr>
+
+               {% if not book.comments.all %}
+
+               <p>Not comments added yet...</p>
+                <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">  Add Comment </a></p>
+
+                {% else %}
+
    
                    {% for comment in book.comments.all %}
    
@@ -34,7 +42,9 @@
                        
    
                    {% endfor %}
-   
+          {% endif %}
+
+    
        
    
             </div>

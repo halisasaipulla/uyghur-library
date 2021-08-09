@@ -16,7 +16,7 @@
             <h6 class="dropdown-header">Category</h6>
             <a href="{% url 'book_list' %}">All</a>
                 {% for category in categories %}
-                <a href="{% url 'book_list' %}?category={{ category.name}}">{{category.name}}</a>
+                <a href="{% url 'book_list' %}?category={{ category.name }}">{{category.name}}</a>
                 {% endfor %}
           </div>
       </div>
