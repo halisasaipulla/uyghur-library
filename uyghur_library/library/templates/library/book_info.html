@@ -34,7 +34,7 @@
                       {% if request.user.username == comment.commenter_name %}
 
                           <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">  Add Comment </a></p>
-                          <p><a class="btn btn-danger" href="{% url 'delete-comment' book.id %}">  Delete Comment </a></p>
+                          <p><a class="btn btn-danger" href="{% url 'delete-comment' book.ISBN comment.id %}">  Delete Comment </a></p>
                          
                          
                        {% endif %}

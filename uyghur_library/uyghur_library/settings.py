@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'storages',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'uyghur_library.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,7 +141,8 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'library/static')
+    # os.path.join(BASE_DIR, 'library/static'),
+    os.path.join(BASE_DIR, 'frontend/build/static')
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

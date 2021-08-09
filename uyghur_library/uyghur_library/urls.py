@@ -22,16 +22,20 @@ from django.conf.urls.static import static
 from users import views as user_views
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
+from library.views import home
+from django.views.generic import TemplateView
 
 urlpatterns = [
+    path('',home),
     path(_('admin/'), admin.site.urls),
     path('', include('library.urls')),
+    # path('', TemplateView.as_view(template_name="index.html")),
     path('faq/', views.faq, name='faq'),
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),
     path('books/info/<str:isbn>', views.book_info, name='book_info'),
     path('books/info/<int:pk>/add_comment/', views.add_comment, name='add_comment'),
-    path('books/info/<int:pk>/delete-comment/', views.delete_comment, name='delete-comment'),
+    path('books/info/<str:isbn>/delete-comment/<int:comment_pk>/', views.delete_comment, name='delete-comment'),
     path('books/upload/', views.upload_book, name='upload_book'),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),

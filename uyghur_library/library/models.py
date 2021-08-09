@@ -21,6 +21,7 @@ class Book(models.Model):
 
 class Comment(models.Model):
     book = models.ForeignKey(Book, related_name ="comments", on_delete=models.CASCADE)
+    id = models.BigAutoField(primary_key=True)
     commenter_name = models.CharField(max_length=200)
     comment_body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)

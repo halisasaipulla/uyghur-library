@@ -1,0 +1,110 @@
+html, body {
+  margin: 0;
+  width: 100vw;
+  height: 97vh;
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+li {
+  padding: 1em;
+  float: right;
+}
+
+li a {
+  color: cornflowerblue;
+  display: block;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size:14px;
+}
+
+.grid{
+  height:23px;
+  position:relative;
+  bottom:4px;
+}
+.signbutton{
+  background-color: #4885ed;
+  color: #fff;
+  border:none;
+  border-radius:3px;
+  padding:7px 10px;
+  position:relative;
+  bottom:7px;
+  font-weight:bolder;
+}
+.logo{
+  margin-top:200px;
+  margin-bottom:20px;
+}
+
+.home-title {
+  font-size: 65px;
+
+}
+a {
+  color: cornflowerblue;
+}
+
+.home-title:hover {
+  color: cornflowerblue;
+  font-size: 65px;
+  text-decoration: none;
+}
+.bar{
+  margin:0 auto;
+  width:575px;
+  border-radius:30px;
+  border:1px solid #dcdcdc;
+}
+.bar:hover{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+.bar:focus-within{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline:none;
+}
+.searchbar{
+  height:45px;
+  border:none;
+  width:484px;
+  font-size:16px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.buttons{
+  margin-top:30px;
+  display: inline-flex;
+}
+
+.nounderline {
+  text-decoration: none !important;
+}
+
+.button{
+  background-color: #f5f5f5;
+  border:none;
+  color:#707070;
+  font-size:15px;
+  padding: 10px 30px;
+  margin:5px;
+  border-radius:4px;
+  outline:none;
+}
+
+.button:hover{
+  border: 1px solid #c8c8c8;
+  color:#808080;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}

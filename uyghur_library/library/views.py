@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 def home(request):
     trans = translate(language='fr')
-    return render(request, 'library/home.html', {'trans': trans})
+    return render(request, 'index.html', {'trans': trans})
 
 def translate(language):
     current_language = get_language()
@@ -78,11 +78,10 @@ def add_comment(request, pk):
     return render(request, 'library/add_comment.html', context)
 
 
-def delete_comment(request, pk):
-    comment = Comment.objects.filter(book=pk).last()
-    book_id = comment.book.id
+def delete_comment(request, isbn, comment_pk):
+    comment = Comment.objects.filter(id=comment_pk)
     comment.delete()
-    return redirect(reverse('book_info', args=[book_id]))
+    return redirect(reverse('book_info', args=[isbn]))
 
 def upload_book(request):
     if request.method == 'POST':
