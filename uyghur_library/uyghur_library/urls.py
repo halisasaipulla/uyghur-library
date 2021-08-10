@@ -23,13 +23,11 @@ from users import views as user_views
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from library.views import home
-from django.views.generic import TemplateView
 
 urlpatterns = [
     path('',home),
     path(_('admin/'), admin.site.urls),
     path('', include('library.urls')),
-    # path('', TemplateView.as_view(template_name="index.html")),
     path('faq/', views.faq, name='faq'),
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),

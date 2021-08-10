@@ -10,8 +10,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
 def home(request):
-    trans = translate(language='fr')
-    return render(request, 'index.html', {'trans': trans})
+    trans = translate(language='ko')
+    return render(request, 'library/home.html', {'trans': trans})
 
 def translate(language):
     current_language = get_language()

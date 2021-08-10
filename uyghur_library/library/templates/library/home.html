@@ -7,20 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-  <title>{% block title %}Uyghur {% translate "Library" %}{% endblock %}</title>
+  <title>{% block title %}{% translate "Uyghur" %} {% translate "Library" %}{% endblock %}</title>
 </head>
 <body>
   <center>
     <header>
         <ul>
           {% if user.is_authenticated %}
-          <li><a class="nav-link" href="{% url 'logout' %}">Sign out</a></li>          
-          <li><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+          <li><a class="nav-link" href="{% url 'logout' %}">{% translate "Sign out" %}</a></li>          
+          <li><a class="nav-link" href="{% url 'profile' %}">{% translate "Profile" %}</a></li>
           {% else %}
-          <li><a class="nav-link" href="{% url 'login' %}"><button class="signbutton" type="button">Sign in</button></a></li>
-          <li><a class="nav-link" href="{% url 'register' %}">Sign up</a></li>
+          <li><a class="nav-link" href="{% url 'login' %}"><button class="signbutton" type="button">{% translate "Sign in" %}</button></a></li>
+          <li><a class="nav-link" href="{% url 'register' %}">{% translate "Sign up" %}</a></li>
           {% endif %}
-          <li><a class="nav-link" href="{% url 'book_list' %}">Books</a></li>           
+          <li><a class="nav-link" href="{% url 'book_list' %}">{% translate "Books" %}</a></li>           
           <li>
             <ul>
               <div>
@@ -41,9 +41,8 @@
         </ul>
     </header>
       <div class="logo">
-        <a class="home-title" href="{% url 'library-home' %}">Uyghur {% translate "Library" %}</a>
+        <a class="home-title" href="{% url 'library-home' %}">{% translate "Uyghur" %} {% translate "Library" %}</a>
       </div>
-      
       <form action="{% url 'search' %}" method="get">
         <div class="bar">
           <input name="q" class="searchbar" type="text" title="Search" placeholder="Search ...">
@@ -51,11 +50,11 @@
         </div>
         <div class="buttons">
           {% if user.is_authenticated %}
-          <a class="nav-link" href="{% url 'upload_book' %}"><button class="button" type="button">Upload</button></a>
+          <a class="nav-link" href="{% url 'upload_book' %}"><button class="button" type="button">{% translate "Upload" %}</button></a>
           {% else %}
-          <a class="nav-item nav-link" href="{% url 'login' %}"><button class="button" type="button">Upload</button></a>
+          <a class="nav-item nav-link" href="{% url 'login' %}"><button class="button" type="button">{% translate "Upload" %}</button></a>
           {% endif %}
-          <a class="nav-item nav-link"><button class="button" type="submit">Search</button></a>
+          <a class="nav-item nav-link"><button class="button" type="submit">{% translate "Search" %}</button></a>
         </div> 
         <footer>
           <ul>

@@ -2,13 +2,11 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from users import views as user_views
-from django.views.generic import TemplateView
 from .views import home
 
 urlpatterns = [
     path('',home),
     path('', views.home, name="library-home"),
-    # path('', TemplateView.as_view(template_name="index.html")),
     path('faq/', views.faq, name='faq'),
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),

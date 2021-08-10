@@ -16,7 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: library/templates/library/base.html:10
 #: library/templates/library/base.html:43
@@ -25,12 +24,12 @@ msgstr ""
 #: library/templates/library/home.html:44
 #: library/templates/library/upload_book.html:16 library/views.py:20
 msgid "Library"
-msgstr ""
+msgstr "كۈتۈپخانا"
 
 #: library/templates/library/home.html:10
 #: library/templates/library/home.html:44
 msgid "Uyghur"
-msgstr ""
+msgstr "ئۇيغۇر"
 
 #: library/templates/library/home.html:17
 msgid "Sign out"

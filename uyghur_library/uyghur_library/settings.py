@@ -14,6 +14,14 @@ import django_heroku
 from dotenv import load_dotenv
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from django.conf import global_settings
+gettext_noop = lambda s: s
+
+import django.conf.locale
+
+# Languages using BiDi (right-to-left) layout
+LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["ug"]
+
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -65,7 +73,7 @@ ROOT_URLCONF = 'uyghur_library.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend/build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,8 +136,22 @@ LANGUAGE_CODE ='en'
 
 LANGUAGES = (
     ('en', _('English')),
+    ('ug', gettext_noop('Uighur')),
+    ('ko', _('Korean')),
     ('fr', _('French')),
 )
+
+EXTRA_LANG_INFO = {
+    'ug': {
+        'bidi': True, # right-to-left
+        'code': 'ug',
+        'name': 'Uighur',
+        'name_local': u'\u0626\u06C7\u064A\u063A\u06C7\u0631 \u062A\u0649\u0644\u0649', #unicode codepoints here
+    },
+}
+
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
@@ -141,8 +163,7 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATICFILES_DIR = [
-    # os.path.join(BASE_DIR, 'library/static'),
-    os.path.join(BASE_DIR, 'frontend/build/static')
+    os.path.join(BASE_DIR, 'library/static'),
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
