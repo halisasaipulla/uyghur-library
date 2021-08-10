@@ -138,7 +138,6 @@ LANGUAGES = (
     ('en', _('English')),
     ('ug', gettext_noop('Uighur')),
     ('ko', _('Korean')),
-    ('fr', _('French')),
 )
 
 EXTRA_LANG_INFO = {
