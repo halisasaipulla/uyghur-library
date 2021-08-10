@@ -13,14 +13,14 @@
           <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
           <div class="col-md-4">
             <div style="margin: 5px padding:2px">
-               Add Comments ({{ num_comments }})
+              {% translate "Add Comments" %} ({{ num_comments }})
                <br>
                <hr>
 
                {% if not book.comments.all %}
 
-               <p>Not comments added yet...</p>
-                <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">  Add Comment </a></p>
+               <p>{% translate "Not comments added yet..." %}</p>
+                <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">{% translate "Add Comment " %}</a></p>
 
                 {% else %}
 
@@ -33,8 +33,8 @@
    
                       {% if request.user.username == comment.commenter_name %}
 
-                          <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">  Add Comment </a></p>
-                          <p><a class="btn btn-danger" href="{% url 'delete-comment' book.ISBN comment.id %}">  Delete Comment </a></p>
+                          <p><a class="btn btn-primary" href="{% url 'add_comment' book.id %}">{% translate "Add Comment" %}</a></p>
+                          <p><a class="btn btn-danger" href="{% url 'delete-comment' book.ISBN comment.id %}">{% translate "Delete Comment" %}</a></p>
                          
                          
                        {% endif %}
@@ -50,7 +50,7 @@
             </div>
          </div>
         <td>
-          <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
+          <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">{% translate "Download PDF" %}</a>
         </td>
     </tbody>
     </table>

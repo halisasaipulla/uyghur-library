@@ -1,13 +1,13 @@
 {% extends 'library/base.html' %}
 {% block content %}
 {% if book %}
-    <center><h>Search Result Founds</h></center>
+    <center><h>{% translate "Search Result Founds" %}</h></center>
     <table class="table mb-0">
         <thead>
           <tr>
-            <th>Cover</th>
-            <th>Title</th>
-            <th>Author</th>
+            <th>{% translate "Cover" %}</th>
+            <th>{% translate "Title" %}</th>
+            <th>{% translate "Author" %}</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
           {% if pdf.cover %}
             <img src="{{ pdf.cover.url }}" alt="{{ pdf.title }}" style="width:100px;">
           {% else %}
-            <span class="text-muted">No cover</span>
+            <span class="text-muted">{% translate "No cover" %}</span>
           {% endif %}
         </td>
         <td><a href="{% url 'book_info' pdf.ISBN %}">{{ pdf.title }}</a></td>
@@ -31,7 +31,7 @@
 </tbody>
 </table>
 {% else %}
-    <center><h1>Nothing found!</h1></center>
+    <center><h1>{% translate "Nothing found!" %}</h1></center>
 {% endif %}
 
 {% endblock %}

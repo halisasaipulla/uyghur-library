@@ -10,10 +10,10 @@
       </div>
       <div class="btn-group">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          category
+          {% translate "category" %}
         </button>
         <div class="dropdown-menu">
-            <h6 class="dropdown-header">Category</h6>
+            <h6 class="dropdown-header">{% translate "Category" %}</h6>
             <a href="{% url 'book_list' %}">All</a>
                 {% for category in categories %}
                 <a href="{% url 'book_list' %}?category={{ category.name }}">{{category.name}}</a>
@@ -27,11 +27,11 @@
   <table class="table mb-0">
     <thead>
       <tr>
-        <th>Cover</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Category</th>
-        <th>Download</th>
+        <th>{% translate "Cover" %}</th>
+        <th>{% translate "Title" %}</th>
+        <th>{% translate "Author" %}</th>
+        <th>{% translate "Category" %}</th>
+        <th>{% translate "Download" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -41,7 +41,7 @@
             {% if book.cover %}
               <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
             {% else %}
-              <span class="text-muted">No cover</span>
+              <span class="text-muted">{% translate "No cover" %}</span>
             {% endif %}
           </td>
           <td><a href="{% url 'book_info' book.ISBN %}">{{ book.title }}</a></td>
@@ -49,7 +49,7 @@
           <td>{{ book.category }}</td>
           <td>
             <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
-              Download PDF
+              {% translate "Download PDF" %}
             </a>
           </td>
         </tr>
