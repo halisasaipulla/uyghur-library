@@ -36,16 +36,23 @@ def searchbar(request):
 
 def book_list(request):
     category = request.GET.get('category')
+    sorted_books = request.GET.get('sorted_books')
     if category == None:
-        
-            books = Book.objects.all()
+        books = Book.objects.all()
     else:
         books = Book.objects.filter(category__name=category)
     categories = Category.objects.all()
+    
+    if sorted_books == None:
+        books = Book.objects.all()
+    else:
+        books = Book.objects.order_by('title')
+
     return render(request, 'library/book_list.html', {
         'books': books,
-        'categories':categories
+        'categories':categories,
     })
+
 
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
@@ -53,8 +60,8 @@ def book_info(request, isbn):
     return render(request, 'library/book_info.html', {'book':book, 'num_comments': num_comments})
 
 
-def add_comment(request, pk):
-    book = get_object_or_404(Book, id=pk)
+def add_comment(request, isbn):
+    book = get_object_or_404(Book, id=isbn)
 
     form = CommentForm(instance=book)
 
@@ -65,7 +72,7 @@ def add_comment(request, pk):
             body = form.cleaned_data['comment_body']
             c = Comment(book=book, commenter_name=name, comment_body=body, date_added=datetime.now())
             c.save()
-            return redirect(reverse('book_info', args=[pk]))
+            return redirect(reverse('book_info', args=[isbn]))
         else:
             print('form is invalid')    
     else:

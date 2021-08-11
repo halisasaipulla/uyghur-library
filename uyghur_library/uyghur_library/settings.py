@@ -15,9 +15,10 @@ from dotenv import load_dotenv
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from django.conf import global_settings
+import django.conf.locale
 gettext_noop = lambda s: s
 
-import django.conf.locale
+
 
 # Languages using BiDi (right-to-left) layout
 LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["ug"]
@@ -167,11 +168,12 @@ STATICFILES_DIR = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'capstoneprojectadac15@gmail.com'
-EMAIL_HOST_PASSWORD = 'adadeveloper123!1'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
