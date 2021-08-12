@@ -1,1 +1,1 @@
-web: gunicorn uyghur-library.wsgi
+web: gunicorn uyghur-library-capstone.wsgi
