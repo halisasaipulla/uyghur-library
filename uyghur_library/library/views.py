@@ -73,7 +73,7 @@ def add_comment(request, isbn):
             c.save()
             return redirect(reverse('book_info', args=[isbn]))  
         else:
-            print('form is invalid')    
+            return redirect(reverse('book_info', args=[isbn]))    
     else:
         form = CommentForm()    
 
