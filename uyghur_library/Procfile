@@ -1,1 +1,0 @@
-web: gunicorn uyghur_library.wsgi

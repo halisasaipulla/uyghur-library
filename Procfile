@@ -1,0 +1,1 @@
+web: gunicorn uyghur_library.wsgi --log-file -

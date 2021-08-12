@@ -20,6 +20,7 @@ gettext_noop = lambda s: s
 
 
 
+
 # Languages using BiDi (right-to-left) layout
 LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI + ["ug"]
 
