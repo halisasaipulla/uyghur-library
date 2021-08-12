@@ -15,7 +15,7 @@ class Book(models.Model):
     pages=models.IntegerField(default='',blank=True)
     book_size=models.CharField(max_length=100, default='',blank=True)
     summary = models.TextField(max_length=250,blank=True)
-
+#gjfg
     def __str__(self):
         return self.title
     
