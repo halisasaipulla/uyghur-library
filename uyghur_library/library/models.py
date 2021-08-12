@@ -12,7 +12,7 @@ class Book(models.Model):
     category = models.ForeignKey('Category',on_delete=models.PROTECT,default=1)
     publishedYear=models.CharField(max_length=100, default='',blank=True)
     publisher = models.CharField(max_length=100, default='',blank=True)
-    pages=models.IntegerField(max_length=100, default='',blank=True)
+    pages=models.IntegerField(default='',blank=True)
     book_size=models.CharField(max_length=100, default='',blank=True)
     summary = models.TextField(max_length=250,blank=True)
 
