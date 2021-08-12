@@ -4,7 +4,11 @@ from .models import Book, Comment
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('ISBN', 'title', 'author', 'pdf', 'cover', 'category')
+        fields = ('ISBN', 'title', 'author','publishedYear', 'publisher','pdf', 'cover', 'category','summary','pages')
+
+
+
+
 
 
 class CommentForm(forms.ModelForm):

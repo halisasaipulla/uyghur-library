@@ -8,8 +8,13 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='books/pdfs/')
-    cover = models.ImageField(upload_to='books/covers/', default='books/covers/default.png')
+    cover = models.ImageField(upload_to='books/covers/', default='books/covers/default.png',blank=True)
     category = models.ForeignKey('Category',on_delete=models.PROTECT,default=1)
+    publishedYear=models.CharField(max_length=100, default='',blank=True)
+    publisher = models.CharField(max_length=100, default='',blank=True)
+    pages=models.IntegerField(max_length=100, default='',blank=True)
+    book_size=models.CharField(max_length=100, default='',blank=True)
+    summary = models.TextField(max_length=250,blank=True)
 
     def __str__(self):
         return self.title
