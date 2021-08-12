@@ -43,10 +43,10 @@ def book_list(request):
         books = Book.objects.filter(category__name=category)
     categories = Category.objects.all()
     
-    if sorted_books == None:
-        books = Book.objects.all()
-    else:
-        books = Book.objects.order_by('title')
+    # if sorted_books == None:
+    #     books = Book.objects.all()
+    # else:
+    #     books = Book.objects.order_by('title')
 
     return render(request, 'library/book_list.html', {
         'books': books,
@@ -57,14 +57,13 @@ def book_list(request):
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
     num_comments = Comment.objects.filter(book=book).count()
-    return render(request, 'library/book_info.html', {'book':book, 'num_comments': num_comments})
+    comments = Comment.objects.filter(book=book)
+    return render(request, 'library/book_info.html', {'book':book, 'num_comments': num_comments, 'comments': comments})
 
 
 def add_comment(request, isbn):
-    book = get_object_or_404(Book, id=isbn)
-
+    book = get_object_or_404(Book, ISBN=isbn)
     form = CommentForm(instance=book)
-
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -72,7 +71,7 @@ def add_comment(request, isbn):
             body = form.cleaned_data['comment_body']
             c = Comment(book=book, commenter_name=name, comment_body=body, date_added=datetime.now())
             c.save()
-            return redirect(reverse('book_info', args=[isbn]))
+            return redirect(reverse('book_info', args=[isbn]))  
         else:
             print('form is invalid')    
     else:
@@ -81,8 +80,7 @@ def add_comment(request, isbn):
     context = {
         'form': form
     }
-
-    return render(request, 'library/add_comment.html', context)
+    return render(request, 'library/book_info.html', context)
 
 
 def delete_comment(request, isbn, comment_pk):
