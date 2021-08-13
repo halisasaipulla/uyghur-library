@@ -2,7 +2,18 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+    .submit-button{
+        color:white;
+    }
+    .submit-button:hover{
+        color:white;
+    }
+    .nounderline {
+        text-decoration: none !important;
+    }
 
+</style>
 <section class="mb-5">
     <div class="row">
 
@@ -103,12 +114,20 @@
                   {% csrf_token %} 
                   <div class="form-group">
                     <div class="form-group">
+                     {% if user.is_authenticated %}
                       <textarea class="form-control" id="comment_body" placeholder="Add a comment..." name="comment_body"></textarea>
+                      
                       <button type="submit" class="btn btn-success btn-small mt-1 m1-4 float-right">Submit</button>
-                  </div>
+                      {% else %}
+                      <textarea class="form-control text-primary" id="comment_body" placeholder="Sign in to add comment..." name="comment_body"></textarea>
+                      <button class="btn btn-success btn-small mt-1 m1-4 float-right" type="button"><a class="nounderline submit-button" href="{% url 'login' %}">{% translate "Submit" %}</a></button>
+
+                        {% endif %}
+                    </div>
                   </div>
               </form>
             </div>
+            
 
             <!-- LIST OF ALL COMMENTS -->
             <div class="col-md-6 float-left w-100">

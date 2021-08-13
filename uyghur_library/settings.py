@@ -18,7 +18,8 @@ from django.conf import global_settings
 import django.conf.locale
 gettext_noop = lambda s: s
 
-
+from django.core.management.utils import get_random_secret_key  
+get_random_secret_key()
 
 
 # Languages using BiDi (right-to-left) layout
