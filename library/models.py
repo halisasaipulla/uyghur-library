@@ -1,6 +1,5 @@
 from django.db import models
-from django.utils import timezone
-
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Book(models.Model):
@@ -13,8 +12,8 @@ class Book(models.Model):
     publishedYear=models.CharField(max_length=100, default='',blank=True)
     publisher = models.CharField(max_length=100, default='',blank=True)
     pages=models.CharField(max_length=100, default='')
-    book_size=models.CharField(max_length=100, default='',blank=True)
     summary = models.TextField(max_length=250,blank=True)
+    favorite = models.ManyToManyField(User,related_name='favorite', blank=True)
 
     def __str__(self):
         return self.title

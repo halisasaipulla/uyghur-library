@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
@@ -37,18 +38,12 @@ def searchbar(request):
 
 def book_list(request):
     category = request.GET.get('category')
-    sorted_books = request.GET.get('sorted_books')
     if category == None:
         books = Book.objects.all()
     else:
         books = Book.objects.filter(category__name=category)
     categories = Category.objects.all()
     
-    # if sorted_books == None:
-    #     books = Book.objects.all()
-    # else:
-    #     books = Book.objects.order_by('title')
-
     return render(request, 'library/book_list.html', {
         'books': books,
         'categories':categories,
@@ -59,7 +54,42 @@ def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
     num_comments = Comment.objects.filter(book=book).count()
     comments = Comment.objects.filter(book=book)
-    return render(request, 'library/book_info.html', {'book':book, 'num_comments': num_comments, 'comments': comments})
+    is_favorite = False
+    if book.favorite.filter(id=request.user.id).exists():
+        is_favorite = True
+
+    return render(request, 'library/book_info.html', 
+                    {'book':book, 
+                    'num_comments': num_comments, 
+                    'comments': comments,
+                    'is_favorite': is_favorite,})
+
+def book_favorite_list(request):
+    user = request.user
+    favorite_books = user.favorite.all()
+    print(favorite_books)
+    
+    context = {
+        'favorite_books': favorite_books
+    }
+
+    return render(request, 'users/profile.html', context)
+
+
+
+
+
+def add_favorite(request, isbn):
+    book = get_object_or_404(Book, ISBN=isbn)
+    if book.favorite.filter(id=request.user.id).exists():
+        book.favorite.remove(request.user)
+    else:
+        book.favorite.add(request.user)
+    return HttpResponseRedirect(book.get_absolute_url())
+
+
+
+
 
 
 def add_comment(request, isbn):
