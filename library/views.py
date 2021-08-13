@@ -10,6 +10,7 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 import PyPDF2
+from django.core.files.storage import FileSystemStorage
 
 def home(request):
     trans = translate(language='ko')
@@ -68,7 +69,7 @@ def book_favorite_list(request):
     user = request.user
     favorite_books = user.favorite.all()
     print(favorite_books)
-    
+
     context = {
         'favorite_books': favorite_books
     }
@@ -123,23 +124,22 @@ def delete_comment(request, isbn, comment_pk):
 def upload_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
-        # pdf = open(str(request.FILES['pdf']),"rb")
-        # reader = PyPDF2.PdfFileReader(pdf)
-        # num_pages = reader.numPages
+        pdf_file = request.FILES['pdf']
+        fs = FileSystemStorage()
 
-        # info = reader.getDocumentInfo()
-        # author = info.author
-        # creator = info.creator
-        # subject = info.subject
-        # title = info.title
-
-        # print(author, creator, subject, title, num_pages)
-
+        pdfname = fs.save(pdf_file.name, pdf_file)
+        uploaded_file_path = fs.path(pdfname)
+        print(uploaded_file_path)
         if form.is_valid():
             check_book = Book.objects.filter(ISBN=request.POST['ISBN'])
             if not check_book:
                 new_book = form.save(commit=False)
-                # new_book.pages = int(num_pages)
+                pdf = open(uploaded_file_path,"rb")
+                reader = PyPDF2.PdfFileReader(pdf)
+                num_pages = reader.numPages
+
+                new_book.pages = int(num_pages)
+                
                 new_book.save()
                 return redirect('book_list')
             else:
