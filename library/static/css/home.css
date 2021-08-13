@@ -2,6 +2,8 @@ html, body {
   margin: 0;
   width: 100vw;
   height: 97vh;
+  background-color: #f6f5f5;
+
 }
 
 ul {
@@ -61,6 +63,8 @@ a {
   width:575px;
   border-radius:30px;
   border:1px solid #dcdcdc;
+  background-color: white;
+
 }
 .bar:hover{
   box-shadow: 1px 1px 8px 1px #dcdcdc;
@@ -96,11 +100,12 @@ a {
   margin:5px;
   border-radius:4px;
   outline:none;
+  border: 1px solid #c8c8c8;
 }
 
 .button:hover{
   border: 1px solid #c8c8c8;
-  color:#808080;
+  color:#5a5959;
 }
 
 footer {

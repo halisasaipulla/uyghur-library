@@ -12,10 +12,10 @@ class Book(models.Model):
     category = models.ForeignKey('Category',on_delete=models.PROTECT,default=1)
     publishedYear=models.CharField(max_length=100, default='',blank=True)
     publisher = models.CharField(max_length=100, default='',blank=True)
-    pages=models.IntegerField(default='',blank=True)
+    pages=models.CharField(max_length=100, default='')
     book_size=models.CharField(max_length=100, default='',blank=True)
     summary = models.TextField(max_length=250,blank=True)
-#gjfg
+
     def __str__(self):
         return self.title
     
@@ -30,6 +30,7 @@ class Comment(models.Model):
     commenter_name = models.CharField(max_length=100)
     comment_body = models.TextField(max_length=200, blank=False)
     date_added = models.DateTimeField(auto_now_add=True)
+    rate = models.IntegerField(default=1)
 
     def __str__(self):
         return '%s - %s' % (self.book.title, self.commenter_name)

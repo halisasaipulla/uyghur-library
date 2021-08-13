@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+import PyPDF2
 
 def home(request):
     trans = translate(language='ko')
@@ -69,7 +70,8 @@ def add_comment(request, isbn):
         if form.is_valid():
             name = request.user.username
             body = form.cleaned_data['comment_body']
-            c = Comment(book=book, commenter_name=name, comment_body=body, date_added=datetime.now())
+            rate = form.cleaned_data['rate']
+            c = Comment(book=book, commenter_name=name, comment_body=body, date_added=datetime.now(), rate=rate)
             c.save()
             return redirect(reverse('book_info', args=[isbn]))  
         else:
@@ -91,10 +93,24 @@ def delete_comment(request, isbn, comment_pk):
 def upload_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
+        # pdf = open(str(request.FILES['pdf']),"rb")
+        # reader = PyPDF2.PdfFileReader(pdf)
+        # num_pages = reader.numPages
+
+        # info = reader.getDocumentInfo()
+        # author = info.author
+        # creator = info.creator
+        # subject = info.subject
+        # title = info.title
+
+        # print(author, creator, subject, title, num_pages)
+
         if form.is_valid():
             check_book = Book.objects.filter(ISBN=request.POST['ISBN'])
             if not check_book:
-                form.save()
+                new_book = form.save(commit=False)
+                # new_book.pages = int(num_pages)
+                new_book.save()
                 return redirect('book_list')
             else:
                 messages.error(request, 'Book already exists.')

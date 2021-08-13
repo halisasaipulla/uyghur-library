@@ -1,15 +1,172 @@
-{% extends "library/base.html" %}
+{% extends 'library/base.html' %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+<style>
+    .submit-button{
+        color:white;
+    }
+    .submit-button:hover{
+        color:white;
+    }
+    .nounderline {
+        text-decoration: none !important;
+        transition-duration: .01s;
+    }
+
+    .bi {
+      padding: 5px;
+    }
+    .card {
+      width: 60%; 
+      height: 90%;
+      border-radius: 15px;
+      border: 0px;
+      box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+    }
+
+    .card-body {
+      padding: 1.25 rem;
+      margin: auto;
+      padding-top: 5%;
+      height: 80%;
+    }
+    .nav-tabs {
+    border-bottom: 0px solid #dee2e6;
+ 
+    } 
+  .nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    justify-content: flex-end;
+}
+  .nav-tabs .nav-item {
+      padding-top: 0px;
+  }
+
+  textarea.form-control {
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .comment-container {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 150px;
+  }
+
+  div.scroll {
+  width: 600px;
+  height: 150px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+}
+</style>
+
+<section class="mb-5">
+
+  <!-- START OF TOP HALF OF PAGE -->
+  <div class="row">
+        <div class="col-md-3 mb-4 md-0">
+          <div id="mdb-lightbox-ui"></div>
+            <div class="mdb-lightbox">
+              <!-- LEFT BOOK COVER SECTION -->
+              <div class="row product-gallery mx-1">
+                <div class="col-12">
+                  <figure class="view overlay rounded z-depth-1 main-img">
+                    <a href="{{ book.cover.url }}"
+                      data-size="700x800">
+                      <img src="{{ book.cover.url }}"
+                        class="img-fluid z-depth-1">
+                    </a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+        </div>
+      <!-- END OF LEFT BOOK COVER SECTION -->
+      </div>
+
+      <!-- START OF TOP RIGHT HALF OF PAGE  -->
+      <div class="col-md-9 mb-0">
+        <h1 class="text-left">{{ book.title }}</h1>
+        <!-- SUMMARY, AUTHOR, CATEGORY  -->
+        <div class="table-responsive">
+          <table class="table p-0 table-borderless mt-5 mb-0">
+            <tbody>
+              <tr>
+                <th class="pl-0 w-25" scope="row">{{ user.username }}</th>
+              </tr>
+              <tr>
+                <th class="pl-0 w-25" scope="row">{{ user.email }}</th>
+              </tr>
+              </tbody>
+              </table>
+
+        </div>
+      </div> 
+  </div>
+
+  <!-- END OF TOP HALF OF PAGE -->
+        <!-- INFORMATION AND REVIEW SECTION  -->
+        <ul class="nav nav-tabs" id="advancedTab" role="tablist">
+
+          <li class="nav-item">
+            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews ({{ num_comments }})</a>
+          </li>
+        </ul>
+
+  <!-- START OF BOTTOM HALF OF PAGE -->
+  <div class="row-md-3 mb-3 md-0">
+
+        <!-- REVIEW TAB -->
+        <div class="tab-pane row" id="reviews" role="tabpanel">
+              <div class="col-6 h-50 scroll">
+                <div class="comment-container">
+                  {% for comment in comments %}
+                  <div class="media-body text-left">
+                    <medium>{{ comment.comment_body }}</medium>
+                    <div class="comment-body">
+                      <small class="text-muted">{{ comment.commenter_name }} - </small>
+                      <small class="text-muted">{{ comment.date_added|date:"F d, Y" }}</small>
+                      {% if request.user.username == comment.commenter_name %}
+                      <a href="{% url 'delete-comment' book.ISBN comment.id %}">
+                        <i class="bi bi-trash">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>
+                        </i>
+                      </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
         </div>
       </div>
-      <!-- FORM HERE -->
     </div>
-{% endblock content %}
+
+    </div> 
+    </div>
+  </div>
+  </div>
+
+</div>
+<!-- END OF BOTTOM HALF OF PAGE -->
+</section>
+<footer>
+  <ul>
+    <li><a class="nav-link" href="{% url 'contact_us' %}">{% translate "Contact Us" %}</a></li>           
+    <li><a class="nav-link" href="{% url 'faq' %}">{% translate "FAQ" %}</a></li>           
+  </ul>
+</footer>
+{% endblock %}
+

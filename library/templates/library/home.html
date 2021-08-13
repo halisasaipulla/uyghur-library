@@ -15,7 +15,7 @@
         <ul>
           {% if user.is_authenticated %}
           <li><a class="nav-link" href="{% url 'logout' %}">{% translate "Sign out" %}</a></li>          
-          <li><a class="nav-link" href="{% url 'profile' %}">{% translate "Profile" %}</a></li>
+          <li><a class="nav-link" href="{% url 'profile' %}">{% translate "Favorites" %}</a></li>
           {% else %}
           <li><a class="nav-link" href="{% url 'login' %}"><button class="signbutton" type="button">{% translate "Sign in" %}</button></a></li>
           <li><a class="nav-link" href="{% url 'register' %}">{% translate "Sign up" %}</a></li>
