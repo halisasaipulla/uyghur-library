@@ -3,20 +3,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <style>
-    .submit-button{
-        color:white;
-    }
-    .submit-button:hover{
-        color:white;
-    }
+
     .nounderline {
         text-decoration: none !important;
         transition-duration: .01s;
     }
 
-    .bi {
-      padding: 5px;
-    }
     .card {
       width: 60%; 
       height: 90%;
@@ -31,29 +23,7 @@
       padding-top: 5%;
       height: 80%;
     }
-    .nav-tabs {
-    border-bottom: 0px solid #dee2e6;
- 
-    } 
-  .nav {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-    justify-content: flex-end;
-}
-  .nav-tabs .nav-item {
-      padding-top: 0px;
-  }
 
-  textarea.form-control {
-    height: 150px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
   .comment-container {
     margin-top: 10px;
     margin-left: 10px;
@@ -73,55 +43,18 @@
 
   <!-- START OF TOP HALF OF PAGE -->
   <div class="row">
-        <div class="col-md-3 mb-4 md-0">
-          <div id="mdb-lightbox-ui"></div>
-            <div class="mdb-lightbox">
-              <!-- LEFT BOOK COVER SECTION -->
-              <div class="row product-gallery mx-1">
-                <div class="col-12">
-                  <figure class="view overlay rounded z-depth-1 main-img">
-                    <a href="{{ book.cover.url }}"
-                      data-size="700x800">
-                      <img src="{{ book.cover.url }}"
-                        class="img-fluid z-depth-1">
-                    </a>
-                  </figure>
-                </div>
-              </div>
-            </div>
-        </div>
-      <!-- END OF LEFT BOOK COVER SECTION -->
-      </div>
-
       <!-- START OF TOP RIGHT HALF OF PAGE  -->
-      <div class="col-md-9 mb-0">
-        <h1 class="text-left">{{ book.title }}</h1>
+      <div class="col-md-12 mb-0">
         <!-- SUMMARY, AUTHOR, CATEGORY  -->
-        <div class="table-responsive">
-          <table class="table p-0 table-borderless mt-5 mb-0">
-            <tbody>
-              <tr>
-                <th class="pl-0 w-25" scope="row">{{ user.username }}</th>
-              </tr>
-              <tr>
-                <th class="pl-0 w-25" scope="row">{{ user.email }}</th>
-              </tr>
-              </tbody>
-              </table>
+        <div class="container text-left">
+          
+          <h3>{{ user.username }}'s Favorites</h3>
 
         </div>
       </div> 
   </div>
 
   <!-- END OF TOP HALF OF PAGE -->
-        <!-- INFORMATION AND REVIEW SECTION  -->
-        <ul class="nav nav-tabs" id="advancedTab" role="tablist">
-
-          <li class="nav-item">
-            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews ({{ num_comments }})</a>
-          </li>
-        </ul>
-
   <!-- START OF BOTTOM HALF OF PAGE -->
   <div class="row-md-3 mb-3 md-0">
 
@@ -129,9 +62,10 @@
         <div class="tab-pane row" id="reviews" role="tabpanel">
               <div class="col-6 h-50 scroll">
                 <div class="comment-container">
-                  {% for books in favorite_books %}
+                  Hello
+                  {% for book in favorite_books %}
                   <div class="media-body text-left">
-                    <medium>{{ books }}</medium>
+                    {{book}}
                   </div>
                   {% endfor %}
                 </div>
@@ -140,11 +74,7 @@
       </div>
     </div>
 
-    </div> 
-    </div>
-  </div>
-  </div>
-
+</section>
 </div>
 <!-- END OF BOTTOM HALF OF PAGE -->
 </section>

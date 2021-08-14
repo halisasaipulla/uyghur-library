@@ -10,12 +10,10 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 import PyPDF2
-from django.core.files.storage import FileSystemStorage
 
 def home(request):
     trans = translate(language='ko')
     return render(request, 'library/home.html', {'trans': trans})
-
 
 def translate(language):
     current_language = get_language()
@@ -26,10 +24,8 @@ def translate(language):
         activate(current_language)
     return text
 
-
 def faq(request):
     return render(request, 'library/faq.html')
-
 
 def searchbar(request):
     if request.method=="GET":
@@ -53,7 +49,6 @@ def book_list(request):
         'categories':categories,
     })
 
-
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
     num_comments = Comment.objects.filter(book=book).count()
@@ -68,18 +63,14 @@ def book_info(request, isbn):
                     'comments': comments,
                     'is_favorite': is_favorite,})
 
-
 def book_favorite_list(request):
     user = request.user
     favorite_books = user.favorite.all()
-    print(favorite_books)
-
     context = {
-        'favorite_books': favorite_books
+        'favorite_books': favorite_books,
     }
 
     return render(request, 'users/profile.html', context)
-
 
 def add_favorite(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
@@ -88,7 +79,6 @@ def add_favorite(request, isbn):
     else:
         book.favorite.add(request.user)
     return HttpResponseRedirect(book.get_absolute_url())
-
 
 def add_comment(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
@@ -112,32 +102,22 @@ def add_comment(request, isbn):
     }
     return render(request, 'library/book_info.html', context)
 
-
 def delete_comment(request, isbn, comment_pk):
     comment = Comment.objects.filter(id=comment_pk)
     comment.delete()
     return redirect(reverse('book_info', args=[isbn]))
 
-
 def upload_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
-        pdf_file = request.FILES['pdf']
-        fs = FileSystemStorage()
-
-        pdfname = fs.save(pdf_file.name, pdf_file)
-        uploaded_file_path = fs.path(pdfname)
-        print(uploaded_file_path)
         if form.is_valid():
             check_book = Book.objects.filter(ISBN=request.POST['ISBN'])
             if not check_book:
                 new_book = form.save(commit=False)
-                pdf = open(uploaded_file_path,"rb")
+                pdf = request.FILES['pdf']
                 reader = PyPDF2.PdfFileReader(pdf)
-                num_pages = reader.numPages
-
-                new_book.pages = int(num_pages)
-                
+                pages=reader.numPages
+                new_book.pages = int(pages)
                 new_book.save()
                 return redirect('book_list')
             else:
@@ -149,14 +129,12 @@ def upload_book(request):
         'form': form
     })
 
-
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-
         data = {
             'name': name,
             'email': email,
@@ -165,10 +143,8 @@ def contact(request):
         }
         message = '''
         New message: {}
-
         From: {}
         '''.format(data['message'], data['email'])
-
         send_mail(data['subject'], message, '', ['capstoneprojectadac15@gmail.com'])
     return render(request, 'library/contact_us.html', {})
 
