@@ -30,7 +30,10 @@ class Comment(models.Model):
     comment_body = models.TextField(max_length=200, blank=False)
     date_added = models.DateTimeField(auto_now_add=True)
     rate = models.IntegerField(default=1)
+    
 
+    
+      
     def __str__(self):
         return '%s - %s' % (self.book.title, self.commenter_name)
         

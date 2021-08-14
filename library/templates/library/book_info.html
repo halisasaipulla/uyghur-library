@@ -152,6 +152,20 @@ color:#FFB656;
       <!-- START OF TOP RIGHT HALF OF PAGE  -->
       <div class="col-md-8 mb-0">
         <h1 class="text-left">{{ book.title }}</h1>
+        <h2>Rating</h2>
+        <medium>
+            {% if average <= 1.0 %}
+            <span class="stars">&#9733;</span>
+            {% elif average <= 2.0 %}
+            <span class="stars">&#9733;&#9733;</span>
+            {% elif average <= 3.0 %}
+            <span class="stars">&#9733;&#9733;&#9733;</span>
+            {% elif average <= 4.0 %}
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;</span>
+            {% elif average <= 5.0 %}
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            {% endif%}
+        </medium>
         <!-- SUMMARY, AUTHOR, CATEGORY  -->
         <div class="table-responsive">
           <table class="table p-0 table-borderless mt-5 mb-0">
@@ -268,7 +282,7 @@ color:#FFB656;
         <!-- REVIEW TAB -->
         <div class="tab-pane row" id="reviews" role="tabpanel">
               <div class="col-6 float-right">
-                <form method="POST" class="review-form">
+                <form method="POST" class="review-form" action="{% url 'add_comment' book.ISBN %}">
                   {% csrf_token %} 
                   <div class="form-group">
                     <div class="form-group">

@@ -10,6 +10,7 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 import PyPDF2
+from django.db.models import Avg
 
 def home(request):
     trans = translate(language='ko')
@@ -53,6 +54,9 @@ def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
     num_comments = Comment.objects.filter(book=book).count()
     comments = Comment.objects.filter(book=book)
+    average=comments.aggregate(Avg("rate"))["rate__avg"]
+    print(average)
+    average1=round(average,2)
     is_favorite = False
     if book.favorite.filter(id=request.user.id).exists():
         is_favorite = True
@@ -62,6 +66,7 @@ def book_info(request, isbn):
                     'is_favorite': is_favorite,
                     'num_comments': num_comments, 
                     'comments': comments,
+                    'average':average1,
                     'is_favorite': is_favorite,})
 
 # def book_favorite_list(request):
