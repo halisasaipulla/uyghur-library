@@ -16,6 +16,7 @@ def home(request):
     trans = translate(language='ko')
     return render(request, 'library/home.html', {'trans': trans})
 
+
 def translate(language):
     current_language = get_language()
     try:
@@ -25,8 +26,10 @@ def translate(language):
         activate(current_language)
     return text
 
+
 def faq(request):
     return render(request, 'library/faq.html')
+
 
 def searchbar(request):
     if request.method=="GET":
@@ -65,6 +68,7 @@ def book_info(request, isbn):
                     'comments': comments,
                     'is_favorite': is_favorite,})
 
+
 def book_favorite_list(request):
     user = request.user
     favorite_books = user.favorite.all()
@@ -77,9 +81,6 @@ def book_favorite_list(request):
     return render(request, 'users/profile.html', context)
 
 
-
-
-
 def add_favorite(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
     if book.favorite.filter(id=request.user.id).exists():
@@ -87,10 +88,6 @@ def add_favorite(request, isbn):
     else:
         book.favorite.add(request.user)
     return HttpResponseRedirect(book.get_absolute_url())
-
-
-
-
 
 
 def add_comment(request, isbn):
@@ -121,6 +118,7 @@ def delete_comment(request, isbn, comment_pk):
     comment.delete()
     return redirect(reverse('book_info', args=[isbn]))
 
+
 def upload_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
@@ -150,6 +148,7 @@ def upload_book(request):
     return render(request, 'library/upload_book.html', {
         'form': form
     })
+
 
 def contact(request):
     if request.method == 'POST':

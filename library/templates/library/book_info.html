@@ -3,6 +3,8 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <style>
+  @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
     .submit-button{
         color:white;
     }
@@ -116,6 +118,12 @@
   content: "\f005";
   color: #FFB656;
 }
+
+span {
+color:#FFB656;
+}
+
+
 </style>
 
 <section class="mb-5">
@@ -249,14 +257,14 @@
                     {% if user.is_authenticated %}
                       <textarea class="form-control" id="comment_body" placeholder="Add a comment..." name="comment_body"></textarea>
                       <div class="form-group">
-                        <div class="input-rating">
-                            <strong class="text-uppercase">Your Rating: </strong>
+                        <div class="input-rating float-left">
+                            <small class="text-uppercase">Your Rating: </small>
                             <div class="stars">
-                                <input type="radio" id="star5" name="rate" value="1" /><label for="star1"></label>
-                                <input type="radio" id="star4" name="rate" value="2" /><label for="star2"></label>
-                                <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                                <input type="radio" id="star2" name="rate" value="4" /><label for="star4"></label>
-                                <input type="radio" id="star1" name="rate" value="5" /><label for="star5"></label>
+                                <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="5 star"></label>
+                                <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="4 star"></label>
+                                <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="3 star"></label>
+                                <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="2 star"></label>
+                                <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="1 star"></label>                                
                             </div>
                         </div>
                     </div>
@@ -276,15 +284,15 @@
                   <div class="media-body text-left">
                     <medium>{{ comment.comment_body }}
                             {% if comment.rate == 1 %}
-                                <i class="fa fa-star">★</i>
+                            <span class="stars">&#9733;</span>
                             {% elif comment.rate == 2 %}
-                                <i class="fa fa-star">★★</i>
+                            <span class="stars">&#9733;&#9733;</span>
                             {% elif comment.rate == 3 %}
-                                <i class="fa fa-star">★★★</i>
+                            <span class="stars">&#9733;&#9733;&#9733;</span>
                             {% elif comment.rate == 4 %}
-                                <i class="fa fa-star">★★★★</i>
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;</span>
                             {% elif comment.rate == 5 %}
-                                <i class="fa fa-star">★★★★★</i>
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                             {% endif%}
                     </medium>
                     <div class="comment-body">
