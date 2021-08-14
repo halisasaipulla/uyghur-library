@@ -59,18 +59,20 @@ def book_info(request, isbn):
 
     return render(request, 'library/book_info.html', 
                     {'book':book, 
+                    'is_favorite': is_favorite,
                     'num_comments': num_comments, 
                     'comments': comments,
                     'is_favorite': is_favorite,})
 
-def book_favorite_list(request):
-    user = request.user
-    favorite_books = user.favorite.all()
-    context = {
-        'favorite_books': favorite_books,
-    }
+# def book_favorite_list(request):
+#     user = request.user
+#     favorite_books = user.favorite.all()
+#     print(favorite_books)
+#     context = {
+#         'favorite_books': favorite_books,
+#     }
 
-    return render(request, 'users/profile.html', context)
+#     return render(request, 'library/book_info.html', context)
 
 def add_favorite(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
@@ -78,7 +80,8 @@ def add_favorite(request, isbn):
         book.favorite.remove(request.user)
     else:
         book.favorite.add(request.user)
-    return HttpResponseRedirect(book.get_absolute_url())
+
+    return redirect(reverse('book_info', args=[isbn])) 
 
 def add_comment(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
