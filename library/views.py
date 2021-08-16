@@ -7,6 +7,7 @@ from django.contrib import messages
 from datetime import datetime
 from django.core.mail import send_mail
 import PyPDF2
+# from PyPDF2 import PdfFileReader
 from django.db.models import Avg
 
 def home(request):
