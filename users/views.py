@@ -22,14 +22,14 @@ def register(request):
 @login_required
 def profile(request):
     user = request.user
-    favorite_books = user.favorite.all()
+    # favorite_books = user.favorite.all()
     context = {
-        'favorite_books': favorite_books,
+        # 'favorite_books': favorite_books,
     }
     return render(request, 'users/profile.html', context)
     
 
-def remove_favorite(request, isbn):
-    book = get_object_or_404(Book, ISBN=isbn)
-    book.favorite.remove(request.user)
-    return redirect(reverse('profile'))  
+# def remove_favorite(request, id):
+#     user = get_object_or_404(User, id=id)
+#     user.favorite.remove(request.user)
+#     return redirect(reverse('profile'))  
