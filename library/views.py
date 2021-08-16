@@ -61,26 +61,25 @@ def book_info(request, isbn):
     comments = Comment.objects.filter(book=book)
     average=comments.aggregate(Avg("rate"))["rate__avg"]
 
-    # is_favorite = False
-    # if book.favorite.filter(id=request.user.id).exists():
-    #     is_favorite = True
+    is_favorite = False
+    if book.favorite.filter(id=request.user.id).exists():
+        is_favorite = True
 
     return render(request, 'library/book_info.html', 
                     {'book':book, 
-                    
+                    'is_favorite': is_favorite,
                     'num_comments': num_comments, 
                     'comments': comments,
                     'average':average,})
 
-# def add_favorite(request, isbn,id):
-#     # book = get_object_or_404(Book, ISBN=isbn)
-#     user = get_object_or_404(User, id=id)
-#     if user.favorite.filter(isbn=request.book.isbn).exists():
-#         user.favorite.remove(request.book)
-#     else:
-#         user.favorite.add(request.book)
+def add_favorite(request, isbn):
+    book = get_object_or_404(Book, ISBN=isbn)
+    if book.favorite.filter(id=request.user.id).exists():
+        book.favorite.remove(request.user)
+    else:
+        book.favorite.add(request.user)
 
-#     return redirect(reverse('book_info', args=[isbn])) 
+    return redirect(reverse('book_info', args=[isbn])) 
 
 def add_comment(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
