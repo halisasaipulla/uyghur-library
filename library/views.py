@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
@@ -7,7 +8,8 @@ from django.contrib import messages
 from datetime import datetime
 from django.core.mail import send_mail
 import PyPDF2
-# from PyPDF2 import PdfFileReader
+
+
 from django.db.models import Avg
 
 def home(request):
@@ -116,7 +118,7 @@ def upload_book(request):
                 pdf = request.FILES['pdf']
                 reader = PyPDF2.PdfFileReader(pdf)
                 pages=reader.numPages
-                new_book.pages = int(pages)
+                new_book.pages = int(float(pages))
                 new_book.save()
                 return redirect('book_list')
             else:
