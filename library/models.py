@@ -10,7 +10,7 @@ class Book(models.Model):
     category = models.ForeignKey('Category',on_delete=models.PROTECT,default=1)
     publishedYear=models.CharField(max_length=100, default='',blank=True)
     publisher = models.CharField(max_length=100, default='',blank=True)
-    
+    pages=models.IntegerField(blank=True,default=1)
     summary = models.TextField(max_length=500,blank=True)
     favorite = models.ManyToManyField(User,related_name='favorite', blank=True)
 
