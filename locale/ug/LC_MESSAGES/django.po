@@ -22,12 +22,26 @@ msgstr ""
 msgid "Add Comment"
 msgstr "كىتابغا باھا بېرىڭ"
 
-#: library/templates/library/base.html:10
-#: library/templates/library/base.html:43
+#: library/templates/library/base.html:11
+#: library/templates/library/base.html:44
 #: library/templates/library/home.html:10
 #: library/templates/library/home.html:44
 msgid "Uyghur"
 msgstr "ئۇيغۇر"
+
+#: library/templates/library/base.html:21
+#: library/templates/library/home.html:18 users/templates/users/profile.html:54
+msgid "Favorites"
+msgstr "ساقلېۋىلىش "
+
+#: library/templates/library/book_list.html:158
+msgid "Back to top"
+msgstr "ئۈستىگە قايتىش"
+
+#: library/templates/library/book_list.html:161
+#: users/templates/users/logout.html:8
+msgid "Return to home page"
+msgstr "باش بەتكە قايتىش "
 
 #: library/templates/library/base.html:10
 #: library/templates/library/base.html:43

@@ -149,3 +149,9 @@ def contact(request):
         send_mail(data['subject'], message, '', ['capstoneprojectadac15@gmail.com'])
     return render(request, 'library/contact_us.html', {})
 
+
+def download(request, id):
+    obj = Book.objects.get(id=id)
+    filename = obj.ISBN.path
+    response = FileResponse(open(filename, 'rb'))
+    return response
