@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 14:17+0000\n"
+"POT-Creation-Date: 2021-08-14 20:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,91 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: library/templates/library/add_comment.html:6
-#: library/templates/library/book_info.html:37
-msgid "Add Comment"
-msgstr "댓글 추가"
 
-#: library/templates/library/base.html:10
-#: library/templates/library/base.html:43
+
+#: library/templates/library/base.html:11
+#: library/templates/library/base.html:44
 #: library/templates/library/home.html:10
 #: library/templates/library/home.html:44
 msgid "Uyghur"
 msgstr "위구르어"
 
-#: library/templates/library/base.html:10
-#: library/templates/library/base.html:43
+#: library/templates/library/base.html:11
+#: library/templates/library/base.html:44
 #: library/templates/library/home.html:10
-#: library/templates/library/home.html:44 library/views.py:20
+#: library/templates/library/home.html:44 library/views.py:23
 msgid "Library"
 msgstr "도서관"
 
-#: library/templates/library/base.html:19
+#: library/templates/library/base.html:20
 #: library/templates/library/home.html:17
 msgid "Sign out"
 msgstr "로그아웃"
 
-#: library/templates/library/base.html:20
-#: library/templates/library/home.html:18
-msgid "Profile"
-msgstr "프로필"
+#: library/templates/library/base.html:21
+#: library/templates/library/home.html:18 users/templates/users/profile.html:54
+msgid "Favorites"
+msgstr "즐겨찾기"
 
-#: library/templates/library/base.html:22
+#: library/templates/library/base.html:23
 #: library/templates/library/home.html:20
 msgid "Sign in"
 msgstr "로그인"
 
-#: library/templates/library/base.html:23
+#: library/templates/library/base.html:24
 #: library/templates/library/home.html:21
 msgid "Sign up"
 msgstr "가입하기"
 
-#: library/templates/library/base.html:25
+#: library/templates/library/base.html:26
 #: library/templates/library/home.html:23
 msgid "Books"
 msgstr "서적"
 
-#: library/templates/library/book_info.html:17
-msgid "Add Comments"
-msgstr "댓글 추가"
+#: library/templates/library/book_info.html:182
+#: library/templates/library/search.html:11
+msgid "Author"
+msgstr "작가"
 
-#: library/templates/library/book_info.html:23
-#, fuzzy
-#| msgid "No comments added yet..."
-msgid "Not comments added yet..."
-msgstr "아직 추가된 댓글이 없습니다"
+#: library/templates/library/book_info.html:186
+msgid "Category"
+msgstr "종류"
 
-#: library/templates/library/book_info.html:24
-msgid "Add Comment "
-msgstr "댓글 추가"
+#: library/templates/library/book_info.html:307
+msgid "Submit"
+msgstr "부치기"
 
-#: library/templates/library/book_info.html:38
-msgid "Delete Comment"
-msgstr "댓글 삭제"
+#: library/templates/library/book_info.html:364
+#: library/templates/library/home.html:61 users/templates/users/login.html:26
+#: users/templates/users/logout.html:14
+msgid "Contact Us"
+msgstr "문의하기"
 
-#: library/templates/library/book_info.html:54
-#, fuzzy
-#| msgid "Download"
-msgid "Download PDF"
-msgstr "다운로드"
+#: library/templates/library/book_info.html:365
+#: library/templates/library/home.html:62 users/templates/users/login.html:27
+#: users/templates/users/logout.html:15
+msgid "FAQ"
+msgstr ""
 
-#: library/templates/library/book_list.html:86
+#: library/templates/library/book_list.html:96
+#: library/templates/library/home.html:48
+#| msgid "Search"
+msgid "Search"
+msgstr "검색"
+
+#: library/templates/library/book_list.html:103
 msgid "category"
 msgstr "종류"
 
-#: library/templates/library/book_list.html:96
-msgid "a-z"
-msgstr "ㄱ-ㅎ"
-
-#: library/templates/library/book_list.html:119
-msgid "Read"
-msgstr "읽기"
-
-#: library/templates/library/book_list.html:134
+#: library/templates/library/book_list.html:158
 msgid "Back to top"
 msgstr "위로 돌아가기"
 
-#: library/templates/library/book_list.html:137
+#: library/templates/library/book_list.html:161
 #: users/templates/users/logout.html:8
 msgid "Return to home page"
 msgstr "홈페이지로 이동"
@@ -115,14 +111,6 @@ msgstr "업로드"
 #: library/templates/library/home.html:57
 msgid "Search"
 msgstr "검색"
-
-#: library/templates/library/home.html:61
-msgid "Contact Us"
-msgstr "문의하기"
-
-#: library/templates/library/home.html:62
-msgid "FAQ"
-msgstr ""
 
 #: library/templates/library/search.html:5
 #, fuzzy
@@ -137,10 +125,6 @@ msgstr "책 표지"
 #: library/templates/library/search.html:10
 msgid "Title"
 msgstr "제목"
-
-#: library/templates/library/search.html:11
-msgid "Author"
-msgstr "작가"
 
 #: library/templates/library/search.html:22
 msgid "No cover"
@@ -168,7 +152,6 @@ msgid "Need An Account?"
 msgstr "계정이 필요합니다?"
 
 #: users/templates/users/login.html:18
-#, fuzzy
 #| msgid "Sign up"
 msgid "Sign Up Now"
 msgstr "가입하기"
@@ -181,6 +164,10 @@ msgstr "로그아웃되었습니다"
 msgid "Log In Again"
 msgstr "다시 로그인"
 
+#: users/templates/users/profile.html:54
+msgid "'s"
+msgstr "의"
+
 #: users/templates/users/register.html:9
 msgid "Join Today"
 msgstr "가입하기"
@@ -190,6 +177,10 @@ msgstr "가입하기"
 #| msgid "Sign up"
 msgid "Sign Up"
 msgstr "가입하기"
+
+#: users/templates/users/register.html:36
+msgid "Email"
+msgstr "이메일 주소"
 
 #: users/templates/users/register.html:18
 msgid "Already Have An Account?"
@@ -201,41 +192,22 @@ msgstr "이미 계정이 있습니까?"
 msgid "Sign In"
 msgstr "로그인"
 
-#: uyghur_library/settings.py:139
+#: uyghur_library/settings.py:141
 msgid "English"
 msgstr ""
 
-#: uyghur_library/settings.py:140
+#: uyghur_library/settings.py:142
 #, fuzzy
 #| msgid "Uyghur"
 msgid "Uighur"
 msgstr "위구르어"
 
-#: uyghur_library/settings.py:141
+#: uyghur_library/settings.py:143
 msgid "Korean"
 msgstr ""
 
-#: uyghur_library/urls.py:29
+#: uyghur_library/urls.py:27
 msgid "admin/"
 msgstr ""
 
-#~ msgid "Name"
-#~ msgstr "이름"
 
-#~ msgid "Email address"
-#~ msgstr "이메일 주소"
-
-#~ msgid "Subject"
-#~ msgstr "테마"
-
-#~ msgid "Message"
-#~ msgstr "메세지"
-
-#~ msgid "Submit"
-#~ msgstr "부치기"
-
-#~ msgid "Category"
-#~ msgstr "종류"
-
-#~ msgid "Download"
-#~ msgstr "다운로드"

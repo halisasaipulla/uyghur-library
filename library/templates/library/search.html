@@ -1,37 +1,173 @@
 {% extends 'library/base.html' %}
 {% load i18n %}
 {% block content %}
-{% if book %}
-    <center><h>{% translate "Search Result Founds" %}</h></center>
-    <table class="table mb-0">
-        <thead>
-          <tr>
-            <th>{% translate "Cover" %}</th>
-            <th>{% translate "Title" %}</th>
-            <th>{% translate "Author" %}</th>
-          </tr>
-        </thead>
-        <tbody>
-    {% for pdf in book %}
-    {% if pdf.ISBN %}
-    <tr>
-        <td>
-          {% if pdf.cover %}
-            <img src="{{ pdf.cover.url }}" alt="{{ pdf.title }}" style="width:100px;">
-          {% else %}
-            <span class="text-muted">{% translate "No cover" %}</span>
-          {% endif %}
-        </td>
-        <td><a href="{% url 'book_info' pdf.ISBN %}">{{ pdf.title }}</a></td>
-        <td>{{ pdf.author }}</td>
-      </tr>
-      {% endif %}
-    {% endfor %}
+<style>
 
-</tbody>
-</table>
-{% else %}
-    <center><h1>{% translate "Nothing found!" %}</h1></center>
-{% endif %}
+
+:root {
+  --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+.box-shadow { 
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+}
+
+.nounderline {
+  text-decoration: none !important;
+}
+
+.card {
+  border: none;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: #f6f5f5;
+
+}
+
+.card-body.book {
+  background-color: white;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 1rem;
+}
+
+.card-body {
+  padding-top: 0px;
+}
+.card-img-top {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.bar{
+  margin:0 auto;
+  width:575px;
+  border-radius:30px;
+  border:1px solid #dcdcdc;
+  background-color: white;
+
+}
+.bar:hover{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+.bar:focus-within{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline:none;
+}
+.searchbar{
+  height:45px;
+  border:none;
+  width:484px;
+  font-size:16px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.navbar > .container {
+  margin-left: 60px;
+  justify-content: center;
+}
+div.scroll {
+width: 900px;
+height: 500px;
+overflow-x: hidden;
+overflow-y: auto;
+text-align: center;
+}
+
+</style>
+
+<header>
+
+  <div class="navbar">
+    <div class="container">
+      <form action="{% url 'search' %}" method="get">
+        <div class="bar">
+          <input name="q" class="searchbar" type="text" title="Search" placeholder="{% translate 'Search' %}...">
+          <button type="submit" class="btn btn-link nounderline">🔍</button>
+        </div>
+      </form>
+
+      <div class="dropdown">
+        <button class="btn btn-link nounderline dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% translate "category" %}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button"><a href="#">All</a></button>
+          {% for category in categories %}
+          <button class="dropdown-item" type="button"><a href="{% url 'search' %}?category={{ category.name }}">{{category.name}}</a></button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<main role="main">
+
+  <div class="album py-5">
+    <div class="container scroll">
+
+      <div class="row justify-content-center pb-3">
+        {% for pdf in book %}
+        {% if pdf.ISBN %}
+        <div class="col-md-2">
+          <div class="card mb-2 box-shadow">
+            <img class="card-img-top" src="{{ pdf.cover.url }}" alt="book cover">
+
+            <div class="card-body book">
+              <p class="card-text">{{ pdf.title }}<br><small>{{ pdf.author }}</small></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <small class="text-muted">{{ pdf.category }}</small>
+                </div>
+                <a title="Read" class="nounderline" href="{% url 'book_info' pdf.ISBN %}"> 
+                  <i class="bi bi-arrow-return-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                    </i>
+                </a>
+              
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+      </div>    
+        <div class="container">
+          <p>
+            <a href="{% url 'search' %}">{% translate "Back to top" %}</a>
+          </p>
+        </div>
+    </div>
+  </div>
+</main>
+
 
 {% endblock %}

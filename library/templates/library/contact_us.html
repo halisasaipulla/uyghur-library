@@ -1,23 +1,56 @@
 {% extends "library/base.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 {% block content %}
+<style>
+
+.card {
+    width: 40%; 
+    height: 500px;
+    border-radius: 15px;
+    border: 0px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+    }
+    
+.card-body {
+    padding: 1.25 rem;
+    margin: auto;
+    padding-top: 5%;
+    height: 80%;
+    width: 100%;
+    }
+
+form {
+    width: 100%;
+}
+
+</style>
+
     <div class="content-section">
         <form method="POST" action="" class="contact-form">
-            {% csrf_token %} 
-            <div class="form-group">
-                <label for="fname" name ="name">Name</label>
-                <input type="text" id = "fname" class="form-control"  placeholder="Your name" name="name" >
-
-                <label for="exampleInputEmail1">Email address</label>  
-                <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter email" name="email"> 
-
-                <label for="Subject">Subject</label>
-                <textarea class="form-control" id="Subject" placeholder="subject" name="subject"></textarea>
+            {% csrf_token %}
+            <fieldset class="form-group text-left">
+                <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Contact Us" %}</legend>
+                {{ form|crispy }}
+                <label for="fname" name ="name">{% translate "Name" %}*</label>
+                <input type="text" id = "fname" class="form-control" name="name" >
                 
-                <label for="Subject">Message</label>
-                <textarea class="form-control" id="Subject" placeholder="Message" name="message"></textarea>
+                <label for="exampleInputEmail1">{% translate "Email address" %}*</label>  
+                <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp" name="email"> 
+    
+                <label for="Subject">{% translate "Subject" %}*</label>
+                <input id="Subject" class="form-control" name="subject"></textarea>
+                
+                <label for="Subject">{% translate "Message" %}*</label>
+                <textarea class="form-control" id="Subject" name="message"></textarea>
+            </fieldset>
+            <div class="form-group text-center">
+                <button class="btn btn-outline-info" type="submit">{% translate "Submit" %}</button>
             </div>
-            <button type="submit" class="btn btn-success btn-lg mt-1 m1-4">Submit</button>
         </form>
     </div>
+
+
 {% endblock content %}
+
+

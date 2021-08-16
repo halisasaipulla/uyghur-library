@@ -1,22 +1,52 @@
 {% extends "library/base.html" %}
-{% load i18n %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 {% block content %}
+<style>
+
+.card {
+    width: 40%; 
+    height: 600px;
+    border-radius: 15px;
+    border: 0px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+}
+
+.card-body {
+    padding: 1.25 rem;
+    margin: auto;
+    padding-top: 5%;
+    height: 80%;
+    
+    }
+form {
+    text-align: left;
+    height: 400px;
+}
+
+</style>
+
     <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> {% translate "Join Today" %}</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit"> {% translate "Sign Up" %}</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Join Today" %}</legend>
+                    <div>{{ form.username| as_crispy_field }}</div>
+                    <div>{{ form.email| as_crispy_field }}</div>
+                    <div>{{ form.password1| as_crispy_field }}</div>
+                </fieldset>
+                <div class="form-group text-center">
+                    <button class="btn btn-outline-info" type="submit">{% translate "Join Today" %}</button>
+                </div> 
+            <div class="border-top pt-3 text-center">
             <small class="text-muted">
-                {% translate "Already Have An Account?" %}<a class="ml-2" href="{% url 'login' %}"> {% translate "Sign In" %}</a>
+                {% translate "Already Have An Account?" %}<a class="ml-2" href="{% url 'login' %}"> {% translate "Sign in" %}</a>
             </small>
         </div>
+            </form>
+        </div>
+
     </div>
+
 {% endblock content %}

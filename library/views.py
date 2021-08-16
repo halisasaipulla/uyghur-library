@@ -1,14 +1,11 @@
-from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
 from .forms import BookForm, CommentForm
 from .models import Book, Category, Comment
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
 import PyPDF2
 from django.db.models import Avg
 
@@ -33,7 +30,13 @@ def searchbar(request):
         search = request.GET.get('q')
         if search:
             book = Book.objects.all().filter(title__icontains=search)
-            return render(request, 'library/search.html', {'book':book})
+            category = request.GET.get('category')
+            if category == None:
+                books = Book.objects.all()
+            else:
+                books = Book.objects.filter(category__name=category)
+            categories = Category.objects.all()
+            return render(request, 'library/search.html', {'book':book, 'books': books, 'categories': categories})
         else:
             return render(request, 'library/home.html')
 
@@ -44,7 +47,6 @@ def book_list(request):
     else:
         books = Book.objects.filter(category__name=category)
     categories = Category.objects.all()
-    
     return render(request, 'library/book_list.html', {
         'books': books,
         'categories':categories,
@@ -55,8 +57,7 @@ def book_info(request, isbn):
     num_comments = Comment.objects.filter(book=book).count()
     comments = Comment.objects.filter(book=book)
     average=comments.aggregate(Avg("rate"))["rate__avg"]
-    print(average)
-    average1=round(average,2)
+
     is_favorite = False
     if book.favorite.filter(id=request.user.id).exists():
         is_favorite = True
@@ -66,18 +67,7 @@ def book_info(request, isbn):
                     'is_favorite': is_favorite,
                     'num_comments': num_comments, 
                     'comments': comments,
-                    'average':average1,
-                    'is_favorite': is_favorite,})
-
-# def book_favorite_list(request):
-#     user = request.user
-#     favorite_books = user.favorite.all()
-#     print(favorite_books)
-#     context = {
-#         'favorite_books': favorite_books,
-#     }
-
-#     return render(request, 'library/book_info.html', context)
+                    'average':average,})
 
 def add_favorite(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)

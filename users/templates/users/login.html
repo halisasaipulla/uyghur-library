@@ -2,28 +2,47 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% block content %}
+<style>
+
+.card {
+    width: 40%; 
+    height: 400px;
+    border-radius: 15px;
+    border: 0px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+    }
+    
+.card-body {
+    padding: 1.25 rem;
+    margin: auto;
+    padding-top: 5%;
+    height: 80%;
+    width: 100%;
+    }
+
+form {
+    width: 100%;
+}
+
+</style>
+
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">{% translate "Log In" %}</legend>
+            <fieldset class="form-group text-left">
+                <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Log In" %}</legend>
                 {{ form|crispy }}
             </fieldset>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button class="btn btn-outline-info" type="submit">{% translate "Login" %}</button>
             </div>
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                {% translate "Need An Account?" %}<a class="ml-2" href="{% url 'register' %}">{% translate "Sign Up Now" %}</a>
+                {% translate "Need An Account?" %}<a class="ml-2" href="{% url 'register' %}">{% translate "Join Today" %}</a>
             </small>
         </div>
     </div>
 
+
 {% endblock content %}
-<footer>
-    <ul>
-      <li><a class="nav-link" href="{% url 'contact_us' %}">{% translate "Contact Us" %}</a></li>           
-      <li><a class="nav-link" href="{% url 'faq' %}">{% translate "FAQ" %}</a></li>           
-    </ul>
-  </footer>

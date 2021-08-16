@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-10 21:19+0000\n"
+"POT-Creation-Date: 2021-08-14 06:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,133 +17,82 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: library/templates/library/add_comment.html:6
-#: library/templates/library/book_info.html:36
-msgid "Add Comment"
-msgstr ""
 
-#: library/templates/library/base.html:10
-#: library/templates/library/base.html:43
+#: library/templates/library/base.html:11
+#: library/templates/library/base.html:44
 #: library/templates/library/home.html:10
 #: library/templates/library/home.html:44
 msgid "Uyghur"
 msgstr "ئۇيغۇر"
 
-#: library/templates/library/base.html:10
-#: library/templates/library/base.html:43
-#: library/templates/library/book_list.html:5
+#: library/templates/library/base.html:11
+#: library/templates/library/base.html:44
 #: library/templates/library/home.html:10
-#: library/templates/library/home.html:44 library/views.py:20
+#: library/templates/library/home.html:44 library/views.py:23
 msgid "Library"
 msgstr "كۈتۈپخانا"
 
-#: library/templates/library/base.html:19
+#: library/templates/library/base.html:20
 #: library/templates/library/home.html:17
 msgid "Sign out"
 msgstr ""
 
-#: library/templates/library/base.html:20
+#: library/templates/library/base.html:21
 #: library/templates/library/home.html:18
 msgid "Profile"
 msgstr ""
 
-#: library/templates/library/base.html:22
+#: library/templates/library/base.html:23
 #: library/templates/library/home.html:20
 msgid "Sign in"
 msgstr ""
 
-#: library/templates/library/base.html:23
+#: library/templates/library/base.html:24
 #: library/templates/library/home.html:21
 msgid "Sign up"
 msgstr ""
 
-#: library/templates/library/base.html:25
+#: library/templates/library/base.html:26
 #: library/templates/library/home.html:23
 msgid "Books"
 msgstr ""
 
-#: library/templates/library/base.html:61
-#: library/templates/library/home.html:61
-msgid "Contact Us"
-msgstr ""
-
-#: library/templates/library/base.html:62
-#: library/templates/library/home.html:62
-msgid "FAQ"
-msgstr ""
-
-#: library/templates/library/book_info.html:16
-msgid "Add Comments"
-msgstr ""
-
-#: library/templates/library/book_info.html:22
-msgid "Not comments added yet..."
-msgstr ""
-
-#: library/templates/library/book_info.html:23
-msgid "Add Comment "
-msgstr ""
-
-#: library/templates/library/book_info.html:37
-msgid "Delete Comment"
-msgstr ""
-
-#: library/templates/library/book_info.html:53
-#: library/templates/library/book_list.html:52
-msgid "Download PDF"
-msgstr ""
-
-#: library/templates/library/book_list.html:13
-msgid "category"
-msgstr ""
-
-#: library/templates/library/book_list.html:16
-#: library/templates/library/book_list.html:33
-msgid "Category"
-msgstr ""
-
-#: library/templates/library/book_list.html:30
-#: library/templates/library/search.html:8
-msgid "Cover"
-msgstr ""
-
-#: library/templates/library/book_list.html:31
-#: library/templates/library/search.html:9
-msgid "Title"
-msgstr ""
-
-#: library/templates/library/book_list.html:32
-#: library/templates/library/search.html:10
+#: library/templates/library/book_info.html:178
+#: library/templates/library/search.html:11
 msgid "Author"
 msgstr ""
 
-#: library/templates/library/book_list.html:34
-msgid "Download"
+#: library/templates/library/book_info.html:182
+msgid "Category"
 msgstr ""
 
-#: library/templates/library/book_list.html:44
-#: library/templates/library/search.html:21
-msgid "No cover"
-msgstr ""
-
-#: library/templates/library/contact_us.html:8
-msgid "Name"
-msgstr ""
-
-#: library/templates/library/contact_us.html:11
-msgid "Email address"
-msgstr ""
-
-#: library/templates/library/contact_us.html:14
-msgid "Subject"
-msgstr ""
-
-#: library/templates/library/contact_us.html:17
-msgid "Message"
-msgstr ""
-
-#: library/templates/library/contact_us.html:20
+#: library/templates/library/book_info.html:301
 msgid "Submit"
+msgstr ""
+
+#: library/templates/library/book_info.html:357
+#: library/templates/library/home.html:61 users/templates/users/login.html:26
+#: users/templates/users/logout.html:14
+msgid "Contact Us"
+msgstr ""
+
+#: library/templates/library/book_info.html:358
+#: library/templates/library/home.html:62 users/templates/users/login.html:27
+#: users/templates/users/logout.html:15
+msgid "FAQ"
+msgstr ""
+
+#: library/templates/library/book_list.html:103
+msgid "category"
+msgstr ""
+
+#: library/templates/library/book_list.html:158
+msgid "Back to top"
+msgstr ""
+
+#: library/templates/library/book_list.html:161
+#: users/templates/users/logout.html:8
+msgid "Return to home page"
 msgstr ""
 
 #: library/templates/library/home.html:53
@@ -155,11 +104,23 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: library/templates/library/search.html:4
+#: library/templates/library/search.html:5
 msgid "Search Result Founds"
 msgstr ""
 
-#: library/templates/library/search.html:33
+#: library/templates/library/search.html:9
+msgid "Cover"
+msgstr ""
+
+#: library/templates/library/search.html:10
+msgid "Title"
+msgstr ""
+
+#: library/templates/library/search.html:22
+msgid "No cover"
+msgstr ""
+
+#: library/templates/library/search.html:34
 msgid "Nothing found!"
 msgstr ""
 
@@ -168,66 +129,66 @@ msgstr ""
 msgid "Upload Book"
 msgstr ""
 
-#: users/templates/users/login.html:8
+#: users/templates/users/login.html:9
 msgid "Log In"
 msgstr ""
 
-#: users/templates/users/login.html:12
+#: users/templates/users/login.html:13
 msgid "Login"
 msgstr ""
 
-#: users/templates/users/login.html:17
+#: users/templates/users/login.html:18
 msgid "Need An Account?"
 msgstr ""
 
-#: users/templates/users/login.html:17
+#: users/templates/users/login.html:18
 msgid "Sign Up Now"
 msgstr ""
 
-#: users/templates/users/logout.html:3
+#: users/templates/users/logout.html:4
 msgid "You have been logged out"
 msgstr ""
 
-#: users/templates/users/logout.html:6
+#: users/templates/users/logout.html:7
 msgid "Log In Again"
 msgstr ""
 
-#: users/templates/users/logout.html:7
-msgid "Go to Home Page"
+#: users/templates/users/profile.html:50
+msgid "'s"
 msgstr ""
 
-#: users/templates/users/register.html:8
+#: users/templates/users/profile.html:50
+msgid "Favorites"
+msgstr ""
+
+#: users/templates/users/register.html:9
 msgid "Join Today"
 msgstr ""
 
-#: users/templates/users/register.html:12
+#: users/templates/users/register.html:13
 msgid "Sign Up"
 msgstr ""
 
-#: users/templates/users/register.html:17
+#: users/templates/users/register.html:18
 msgid "Already Have An Account?"
 msgstr ""
 
-#: users/templates/users/register.html:17
+#: users/templates/users/register.html:18
 msgid "Sign In"
 msgstr ""
 
-#: uyghur_library/settings.py:138
+#: uyghur_library/settings.py:141
 msgid "English"
 msgstr ""
 
-#: uyghur_library/settings.py:139
+#: uyghur_library/settings.py:142
 msgid "Uighur"
 msgstr ""
 
-#: uyghur_library/settings.py:140
+#: uyghur_library/settings.py:143
 msgid "Korean"
 msgstr ""
 
-#: uyghur_library/settings.py:141
-msgid "French"
-msgstr ""
-
-#: uyghur_library/urls.py:29
+#: uyghur_library/urls.py:27
 msgid "admin/"
 msgstr ""

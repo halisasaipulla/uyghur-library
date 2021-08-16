@@ -1,11 +1,52 @@
-{% extends 'library/base.html' %}
+{% extends "library/base.html" %}
+{% load crispy_forms_tags %}
 {% load i18n %}
-{% block content %}  
-    <h1>FAQ Page</h1>
-    <h2>How do we upload a book?</h2>
-    <h3>Use the upload button!</h3>
-    <h2>What are the different file types that can be uploaded?</h2>
-    <h2>Can we upload ePUB files?</h2>
-    <h2>Where can we sign up?</h2>
-    <h2>Can I download a book?</h2>
-{% endblock %}
+{% block content %}
+<style>
+
+.card {
+    width: 40%; 
+    height: 600px;
+    border-radius: 15px;
+    border: 0px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+    }
+    
+.card-body {
+    padding: 1.25 rem;
+    margin: auto;
+    padding-top: 5%;
+    height: 80%;
+    width: 100%;
+    }
+
+form {
+    width: 100%;
+}
+
+</style>
+
+    <div class="content-section">
+        <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Frequently Asked Questions" %}</legend>
+        <h5>Why does this website exist?</h5>
+        <h7>Explanation</h7>
+        <h5>What file types are allowed?</h5>
+        <h7>Explanation</h7>
+        <h5>Do I have to create an account to read files?</h5>
+        <h7>Explanation</h7>
+        <h5>Can I share my files?</h5>
+        <h7>Explanation</h7>
+        <h5>How do I upload files</h5>
+        <h7>Explanation</h7>
+        <h5>How do I register an account?</h5>
+        <h7>Explanation</h7>
+        <h5>How do I delete an account</h5>
+        <h7>Explanation</h7>
+        <h5>Can I reset my password?</h5> 
+        <h7>Explanation</h7>    
+    </div>
+
+
+{% endblock content %}
+
+

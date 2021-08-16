@@ -49,8 +49,12 @@
   background-color: white;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+  padding: 1rem;
 }
 
+.card-body {
+  padding-top: 0px;
+}
 .card-img-top {
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
@@ -84,6 +88,13 @@
   margin-left: 60px;
   justify-content: center;
 }
+div.scroll {
+width: 900px;
+height: 500px;
+overflow-x: hidden;
+overflow-y: auto;
+text-align: center;
+}
 
 </style>
 
@@ -93,7 +104,7 @@
     <div class="container">
       <form action="{% url 'search' %}" method="get">
         <div class="bar">
-          <input name="q" class="searchbar" type="text" title="Search" placeholder="Search ...">
+          <input name="q" class="searchbar" type="text" title="Search" placeholder="{% translate 'Search' %}...">
           <button type="submit" class="btn btn-link nounderline">🔍</button>
         </div>
       </form>
@@ -117,9 +128,9 @@
 <main role="main">
 
   <div class="album py-5">
-    <div class="container">
+    <div class="container scroll">
 
-      <div class="row">
+      <div class="row pb-3">
         {% for book in books %}
         <div class="col-md-2">
           <div class="card mb-2 box-shadow">
@@ -132,9 +143,9 @@
                   <small class="text-muted">{{ book.category }}</small>
                 </div>
                 <a title="Read" class="nounderline" href="{% url 'book_info' book.ISBN %}"> 
-                  <i class="bi bi-play">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
-                      <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                  <i class="bi bi-arrow-return-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
                     </svg>
                     </i>
                 </a>
@@ -144,21 +155,15 @@
           </div>
         </div>
         {% endfor %}
-      </div>
+      </div>    
+        <div class="container">
+          <p>
+            <a href="{% url 'book_list' %}">{% translate "Back to top" %}</a>
+          </p>
+        </div>
     </div>
   </div>
-
-  
-
 </main>
 
-<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">{% translate "Back to top" %}</a>
-    </p>
-    <br>
-    <p></p><a class="nounderline" href="{% url 'library-home' %}">{% translate "Return to home page" %}</a></p>
-  </div>
-</footer>
+
 {% endblock %}

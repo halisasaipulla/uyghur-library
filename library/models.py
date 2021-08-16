@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
 
 class Book(models.Model):
     ISBN = models.CharField(max_length=100, default='')
@@ -22,6 +21,11 @@ class Book(models.Model):
         self.pdf.delete()
         self.cover.delete()
         super().delete(*args, **kwargs)
+    
+    def avg_rating(self):
+        self.average = sum(Comment.objects.all().rate/Comment.count())
+        print(self.average)
+        return self.average
 
 class Comment(models.Model):
     book = models.ForeignKey(Book, related_name ="comments", on_delete=models.CASCADE)
@@ -30,10 +34,9 @@ class Comment(models.Model):
     comment_body = models.TextField(max_length=200, blank=False)
     date_added = models.DateTimeField(auto_now_add=True)
     rate = models.IntegerField(default=1)
-    
+    class Meta:
+        ordering = ['-date_added']
 
-    
-      
     def __str__(self):
         return '%s - %s' % (self.book.title, self.commenter_name)
         

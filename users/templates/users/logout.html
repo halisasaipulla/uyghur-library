@@ -1,17 +1,43 @@
 {% extends "library/base.html" %}
 {% load i18n %}
 {% block content %}
-    <h2>{% translate "You have been logged out" %}</h2>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <a href="{% url 'login' %}">{% translate "Log In Again" %}</a>
-            <a href="{% url 'library-home' %}">{% translate "Return to home page" %}</a>
-        </small>
+
+<style>
+
+  .card {
+    width: 40%; 
+    height: 90%;
+    border-radius: 15px;
+    border: 0px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+  }
+  
+  .card-body {
+    padding: 1.25 rem;
+    margin: auto;
+    padding-top: 5%;
+    height: 80%;
+    
+    }
+
+</style>
+
+  <div class="content-section">
+    <div class="album">
+      <div class="container">
+          <h3 class="border-bottom pb-3">{% translate "You have been logged out" %}</h3>
+          <div class="col pt-3">
+              <small class="text-muted">
+                  <a href="{% url 'login' %}">{% translate "Log In Again" %}</a>
+              </small>
+          </div>
+          <div class="col pt-3">
+            <small class="text-muted">
+              <a href="{% url 'library-home' %}">{% translate "Return to home page" %}</a>
+            </small>
+        </div>
+      </div>
     </div>
-{% endblock content %}
-<footer>
-  <ul>
-    <li><a class="nav-link" href="{% url 'contact_us' %}">{% translate "Contact Us" %}</a></li>           
-    <li><a class="nav-link" href="{% url 'faq' %}">{% translate "FAQ" %}</a></li>           
-  </ul>
-</footer>
+  </div>
+
+{% endblock %}

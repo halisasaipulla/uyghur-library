@@ -1,89 +1,164 @@
 {% extends 'library/base.html' %}
 {% load i18n %}
-{% load crispy_forms_tags %}
 {% block content %}
+
 <style>
 
-    .nounderline {
-        text-decoration: none !important;
-        transition-duration: .01s;
-    }
-
-    .card {
-      width: 60%; 
-      height: 90%;
-      border-radius: 15px;
-      border: 0px;
-      box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
-    }
-
-    .card-body {
-      padding: 1.25 rem;
-      margin: auto;
-      padding-top: 5%;
-      height: 80%;
-    }
-
-  .comment-container {
-    margin-top: 10px;
-    margin-left: 10px;
-    height: 150px;
-  }
-
-  div.scroll {
-  width: 600px;
-  height: 150px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  text-align: center;
+.nounderline {
+    text-decoration: none !important;
+    transition-duration: .01s;
 }
+
+.book-title {
+  color: black;
+}
+
+.card {
+  width: 60%; 
+  height: 630px;
+  border-radius: 15px;
+  border: 0px;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
+}
+
+.card-body {
+  padding: 1.25rem;
+  margin: auto;
+  padding-top: 5%;
+  height: 80%;
+}
+
+.comment-container {
+margin-top: 10px;
+margin-left: 10px;
+height: 450px;
+}
+
+div.scroll {
+width: 600px;
+height: 470px;
+overflow-x: hidden;
+overflow-y: auto;
+text-align: center;
+}
+
+img {
+  border-radius: 10px;
+}
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
 </style>
-
-<section class="mb-5">
-
-  <!-- START OF TOP HALF OF PAGE -->
-  <div class="row">
-      <!-- START OF TOP RIGHT HALF OF PAGE  -->
-      <div class="col-md-12 mb-0">
-        <!-- SUMMARY, AUTHOR, CATEGORY  -->
-        <div class="container text-left">
-          
-          <h3>{{ user.username }}'s Favorites</h3>
-
-        </div>
-      </div> 
+<div>
+<section class="mb-2">
+  <div class="container pt-1">
+    <h2>{{ user.username }}{% translate "'s" %} {% translate "Favorites" %}</h2>
+    <small>{{ user.email }}</small>
   </div>
-
-  <!-- END OF TOP HALF OF PAGE -->
-  <!-- START OF BOTTOM HALF OF PAGE -->
-  <div class="row-md-3 mb-3 md-0">
-
-        <!-- REVIEW TAB -->
-        <div class="tab-pane row" id="reviews" role="tabpanel">
-              <div class="col-6 h-50 scroll">
-                <div class="comment-container">
+</section>
 
 
-                  <div class="media-body text-left">
-                    
-                  </div>
-           
-                </form>
-                </div>
-              </div>
+<div class="container scroll">
+  <!-- START OF TOP HALF OF PAGE -->
+  {% for book in favorite_books %}
+  <a><div class="row">
+    <!-- START OF BOOK COVER  -->
+    <div class="col-md-3">
+      <div id="mdb-lightbox-ui"></div>
+        <div class="mdb-lightbox">
+          <!-- LEFT BOOK COVER SECTION -->
+          <div class="row product-gallery mx-1">
+            <div class="col-12">
+              <figure class="view overlay rounded z-depth-1 main-img">
+                <a href="{% url 'book_info' book.ISBN %}"
+                  data-size="700x800">
+                  <img src="{{ book.cover.url }}"
+                    class="img-fluid z-depth-1">
+                </a>
+              </figure>
+            </div>
+          </div>
         </div>
+    </div>
+  <!-- END OF LEFT BOOK COVER SECTION -->
+
+
+
+
+<!-- START OF BOOK COVER  -->
+    <div class="col-md-5 pt-1">
+      <div class="row">
+        <a class="nounderline book-title" href="{% url 'book_info' book.ISBN %}"><h5 class="text-left">{{ book.title}}</h5></a>
+      </div>
+      <div class="row">
+        <small>{{ book.author }}</small>
+      </div>
+      <div class="row">
+        <small>{{ book.category }}</small>
+      </div>
+      <div class="row">
+        <medium>
+          {% if book.average == 1 %}
+          <span class="stars">&#9733;</span>
+          {% elif book.average == 2 %}
+          <span class="stars">&#9733;&#9733;</span>
+          {% elif book.average == 3 %}
+          <span class="stars">&#9733;&#9733;&#9733;</span>
+          {% elif book.average == 4 %}
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;</span>
+          {% elif book.average == 5 %}
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          {% endif%}
+        </medium>
       </div>
     </div>
+<!-- END OF LEFT BOOK COVER SECTION -->
 
-</section>
+
+
+<!-- START OF BOOK COVER  -->
+    <div class="col-md-4 pb-4 align-self-end">  
+      
+      <a title="Read" class="icon nounderline p-1" href="{{ book.pdf.url }}"> 
+        <i class="bi bi-book">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+          </svg>
+        </i>
+      </a>
+      <a title="Download" class="icon nounderline p-1" href="{{ book.pdf.url }}" download> 
+        <i class="bi bi-download">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+          </svg>
+        </i>
+      </a>
+      <a title="Remove from Favorites" class="icon nounderline p-2" href="{% url 'remove_favorite' book.ISBN %}"> 
+        <i class="bi bi-bookmarks-fill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
+            <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
+            <path d="M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
+          </svg>
+        </i>
+      </a>
+    </div>
+<!-- END OF LEFT BOOK COVER SECTION -->
+
 </div>
-<!-- END OF BOTTOM HALF OF PAGE -->
-</section>
-<footer>
-  <ul>
-    <li><a class="nav-link" href="{% url 'contact_us' %}">{% translate "Contact Us" %}</a></li>           
-    <li><a class="nav-link" href="{% url 'faq' %}">{% translate "FAQ" %}</a></li>           
-  </ul>
-</footer>
+{% endfor %}
+
+<!-- END OF TOP HALF OF PAGE -->
+<div>
+  <div class="container">
+    <p>
+      <a href="{% url 'profile' %}">{% translate "Back to top" %}</a>
+    </p>
+  </div>
 {% endblock %}
+
+
 
