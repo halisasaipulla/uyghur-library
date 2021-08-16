@@ -11,7 +11,7 @@ class Book(models.Model):
     publishedYear=models.CharField(max_length=100, default='',blank=True)
     publisher = models.CharField(max_length=100, default='',blank=True)
     pages=models.CharField(max_length=100, default='')
-    summary = models.TextField(max_length=250,blank=True)
+    summary = models.TextField(max_length=500,blank=True)
     favorite = models.ManyToManyField(User,related_name='favorite', blank=True)
 
     def __str__(self):
