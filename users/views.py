@@ -6,14 +6,17 @@ from library.models import Book, Comment
 from django.db.models import Avg
 
 
+from django.contrib.auth.forms import UserCreationForm
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('library-home')
+            
+            messages.add_message(request, messages.SUCCESS, 'Your account has been successfully created.')
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})

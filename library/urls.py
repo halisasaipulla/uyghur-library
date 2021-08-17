@@ -11,6 +11,7 @@ urlpatterns = [
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),
     path('books/info/<str:isbn>/', views.book_info, name='book_info'),
+    # path('books/info/<str:isbn>/download/', views.download_file, name='download_pdf'),
     path('books/info/<str:isbn>/add_favorite/', views.add_favorite, name='add_favorite'),
     path('books/info/<str:isbn>/add_comment/', views.add_comment, name='add_comment'),
     path('books/info/<str:isbn>/delete-comment/<int:comment_pk>/', views.delete_comment, name='delete-comment'),

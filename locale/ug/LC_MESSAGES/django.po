@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-10 21:19+0000\n"
+"POT-Creation-Date: 2021-08-16 20:06-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,251 +17,272 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: library/templates/library/add_comment.html:6
-#: library/templates/library/book_info.html:36
-msgid "Add Comment"
-msgstr "كىتابغا باھا بېرىڭ"
+
+
+
 
 #: library/templates/library/base.html:11
 #: library/templates/library/base.html:44
-#: library/templates/library/home.html:10
-#: library/templates/library/home.html:44
+#: library/templates/library/home.html:11
+#: library/templates/library/home.html:45
 msgid "Uyghur"
 msgstr "ئۇيغۇر"
 
-#: library/templates/library/base.html:21
-#: library/templates/library/home.html:18 users/templates/users/profile.html:54
-msgid "Favorites"
-msgstr "ساقلېۋىلىش "
-
-#: library/templates/library/book_list.html:158
-msgid "Back to top"
-msgstr "ئۈستىگە قايتىش"
-
-#: library/templates/library/book_list.html:161
-#: users/templates/users/logout.html:8
-msgid "Return to home page"
-msgstr "باش بەتكە قايتىش "
-
-#: library/templates/library/base.html:10
-#: library/templates/library/base.html:43
-#: library/templates/library/book_list.html:5
-#: library/templates/library/home.html:10
-#: library/templates/library/home.html:44 library/views.py:20
+#: library/templates/library/base.html:11
+#: library/templates/library/base.html:44
+#: library/templates/library/home.html:11
+#: library/templates/library/home.html:45 library/views.py:26
 msgid "Library"
 msgstr "كۈتۈپخانىسى"
 
-#: library/templates/library/base.html:19
-#: library/templates/library/home.html:17
+#: library/templates/library/base.html:20
+#: library/templates/library/home.html:18
 msgid "Sign out"
 msgstr "چېكىنىش"
 
-#: library/templates/library/base.html:20
-#: library/templates/library/home.html:18
-msgid "Profile"
-msgstr "ئارخىپ"
-
-#: library/templates/library/base.html:22
-#: library/templates/library/home.html:20
-msgid "Sign in"
-msgstr "كىرىش"
+#: library/templates/library/base.html:21
+#: library/templates/library/home.html:19 users/templates/users/profile.html:58
+msgid "Favorites"
+msgstr "ساقلېۋىلىش "
 
 #: library/templates/library/base.html:23
 #: library/templates/library/home.html:21
+#: users/templates/users/register.html:41
+msgid "Sign in"
+msgstr "كىرىش"
+
+#: library/templates/library/base.html:24
+#: library/templates/library/home.html:22
 msgid "Sign up"
 msgstr "تىزىملىتىش"
 
-#: library/templates/library/base.html:25
-#: library/templates/library/home.html:23
+#: library/templates/library/base.html:26
+#: library/templates/library/home.html:24
 msgid "Books"
 msgstr "كىتابلار"
 
-#: library/templates/library/base.html:61
-#: library/templates/library/home.html:61
+#: library/templates/library/base.html:72
+#: library/templates/library/book_info.html:387
+#: library/templates/library/contact_us.html:33
+#: library/templates/library/home.html:95
 msgid "Contact Us"
 msgstr "ئالاقە قىلىڭ"
 
-#: library/templates/library/base.html:62
-#: library/templates/library/home.html:62
+#: library/templates/library/base.html:73
+#: library/templates/library/book_info.html:388
+#: library/templates/library/home.html:96
 msgid "FAQ"
 msgstr "سوئال جاۋاپ "
 
-#: library/templates/library/book_info.html:16
-msgid "Add Comments"
-msgstr "كىتابغا باھا بېرىڭ"
+#: library/templates/library/book_info.html:176
+msgid "Rating"
+msgstr "باھا"
 
-#: library/templates/library/book_info.html:22
-msgid "Not comments added yet..."
-msgstr "تېخى ئىنكاس يوق"
-
-#: library/templates/library/book_info.html:23
-msgid "Add Comment "
-msgstr "كىتابغا باھا بېرىڭ"
-
-#: library/templates/library/book_info.html:37
-msgid "Delete Comment"
-msgstr "ئىنكاسنى ئۆچۈرۈش"
-
-
-
-#: library/templates/library/book_info.html:53
-#: library/templates/library/book_list.html:52
-msgid "Download PDF"
-msgstr "چۈشۈرۈش"
-
-#: library/templates/library/book_list.html:13
-msgid "category"
-msgstr "كىتاب تۈرى"
-
-#: library/templates/library/book_list.html:16
-#: library/templates/library/book_list.html:33
-msgid "Category"
-msgstr "كىتاب تۈرى"
-
-#: library/templates/library/book_list.html:30
-#: library/templates/library/search.html:8
-msgid "Cover"
-msgstr "مۇقاۋا"
-
-#: library/templates/library/book_list.html:31
-#: library/templates/library/search.html:9
-msgid "Title"
-msgstr "كىتاب نامى"
-
-#: library/templates/library/book_list.html:32
-#: library/templates/library/search.html:10
+#: library/templates/library/book_info.html:196
 msgid "Author"
 msgstr "ئاپتور/تەرجىمان"
 
-#: library/templates/library/book_list.html:34
-msgid "Download"
-msgstr "چۈشۈرۈش"
+#: library/templates/library/book_info.html:200
+msgid "Category"
+msgstr "كىتاب تۈرى"
 
-#: library/templates/library/book_list.html:44
-#: library/templates/library/search.html:21
-msgid "No cover"
-msgstr "مۇقاۋىسىز"
+#: library/templates/library/book_info.html:262
+msgid "Summary"
+msgstr "خۇلاسە"
 
-#: library/templates/library/contact_us.html:8
-msgid "Name"
-msgstr "ئىسىم "
+#: library/templates/library/book_info.html:265
+msgid "Information"
+msgstr "كىتاب تەپسىلاتى"
 
-#: library/templates/library/contact_us.html:11
-msgid "Email address"
-msgstr "ئېلخەت "
+#: library/templates/library/book_info.html:268
+msgid "Reviews"
+msgstr "پىكىرلەر "
 
-#: library/templates/library/contact_us.html:14
-msgid "Subject"
-msgstr "تېما "
+#: library/templates/library/book_info.html:287
+msgid "Published Year"
+msgstr "ۋاقىت"
 
-#: library/templates/library/contact_us.html:17
-msgid "Message"
-msgstr "ئۇچۇر "
+#: library/templates/library/book_info.html:291
+msgid "Publisher"
+msgstr "نەشرىيات"
 
-#: library/templates/library/contact_us.html:20
+#: library/templates/library/book_info.html:299
+msgid "pages"
+msgstr "بەت سانى "
+
+#: library/templates/library/book_info.html:314
+msgid "Add a comment"
+msgstr "كىتابغا باھا بېرىڭ"
+
+#: library/templates/library/book_info.html:317
+msgid "Your rating"
+msgstr "سىزنىڭ بۇ كىتابقا بەرگەن باھاڭىز"
+
+#: library/templates/library/book_info.html:327
+#: library/templates/library/book_info.html:330
+#: library/templates/library/contact_us.html:48
 msgid "Submit"
-msgstr ""
+msgstr "يوللاش "
 
-#: library/templates/library/home.html:53
-#: library/templates/library/home.html:55
-msgid "Upload"
-msgstr "ئېلكىتاب يوللاش"
+#: library/templates/library/book_info.html:329
+msgid "Sign in to add comment"
+msgstr "باھا بېرىش ئالدىدا ھىسابات نومۇرىغا كىرىڭ "
 
-#: library/templates/library/home.html:57
+#: library/templates/library/book_list.html:107
+#: library/templates/library/home.html:49
+#: library/templates/library/home.html:58
+#: library/templates/library/search.html:107
+#: users/templates/users/temp.html:107
 msgid "Search"
 msgstr "ئىزدەش"
 
-#: library/templates/library/search.html:4
-msgid "Search Result Founds"
-msgstr "سىز ئىزدىگەن كىتاب تېپىلدى."
+#: library/templates/library/book_list.html:114
+#: library/templates/library/search.html:114
+#: users/templates/users/temp.html:114
+msgid "category"
+msgstr "كىتاب تۈرى"
 
-#: library/templates/library/search.html:33
-msgid "Nothing found!"
-msgstr "كەچۈرۈڭ، سىز ئىزدىگەن كىتاب تېپىلمىدى."
+#: library/templates/library/book_list.html:161
+#: library/templates/library/search.html:165
+#: users/templates/users/profile.html:158 users/templates/users/temp.html:162
+msgid "Back to top"
+msgstr "ئۈستىگە قايتىش"
 
-#: library/templates/library/upload_book.html:5
-#: library/templates/library/upload_book.html:16
+#: library/templates/library/contact_us.html:35
+msgid "Name"
+msgstr "ئىسىم "
+
+#: library/templates/library/contact_us.html:41
+msgid "Subject"
+msgstr "تېما "
+
+#: library/templates/library/contact_us.html:44
+msgid "Message"
+msgstr "ئۇچۇر "
+
+#: library/templates/library/faq.html:30
+msgid "Frequently Asked Questions"
+msgstr "كۆپ سورالغان سوئاللار"
+
+#: library/templates/library/home.html:54
+#: library/templates/library/home.html:56
+msgid "Upload"
+msgstr "ئېلكىتاب يوللاش"
+
+#: library/templates/library/upload_book.html:80
+#: library/templates/library/upload_book.html:101
 msgid "Upload Book"
 msgstr "ئېلكىتاب يوللاش"
 
-
-
-#: users/templates/users/login.html:8
+#: users/templates/users/login.html:33
 msgid "Log In"
 msgstr "كىرىش"
 
-#: users/templates/users/login.html:12
+#: users/templates/users/login.html:37
 msgid "Login"
 msgstr "كىرىش"
 
-#: users/templates/users/login.html:17
+#: users/templates/users/login.html:42
 msgid "Need An Account?"
 msgstr "ھېسابات لازىممۇ؟"
 
-#: users/templates/users/login.html:17
-msgid "Sign Up Now"
-msgstr "ھازىر تىزىملىتىڭ"
-
-#: users/templates/users/logout.html:3
-msgid "You have been logged out"
-msgstr "سىز چىقىپ كەتتىڭىز"
-
-#: users/templates/users/logout.html:6
-msgid "Log In Again"
-msgstr "قايتا كىرىڭ"
-
-#: users/templates/users/logout.html:7
-msgid "Go to Home Page"
-msgstr "باشبەت"
-
-#: users/templates/users/register.html:8
+#: users/templates/users/login.html:42 users/templates/users/register.html:33
+#: users/templates/users/register.html:37
 msgid "Join Today"
 msgstr "بۈگۈن قوشۇلۇڭ"
 
-#: users/templates/users/register.html:8
-msgid "Username"
+#: users/templates/users/logout.html:28
+msgid "You have been logged out"
+msgstr "سىز چىقىپ كەتتىڭىز"
+
+#: users/templates/users/logout.html:31
+msgid "Log In Again"
+msgstr "قايتا كىرىڭ"
+
+#: users/templates/users/logout.html:36
+msgid "Return to home page"
+msgstr "باش بەتكە قايتىش "
+
+#: users/templates/users/profile.html:58
+msgid "'s"
 msgstr ""
 
-#: users/templates/users/register.html:8
-msgid "Email"
-msgstr "ئېلخەت "
-
-#: users/templates/users/register.html:8
-msgid "Password"
-msgstr ""
-
-#: users/templates/users/register.html:8
-msgid "Password confirmation"
-msgstr ""
-
-#: users/templates/users/register.html:12
-msgid "Sign Up"
-msgstr "تىزىملىتىڭ"
-
-#: users/templates/users/register.html:17
+#: users/templates/users/register.html:41
 msgid "Already Have An Account?"
 msgstr "ھېساباتىڭىز بارمۇ؟"
 
-#: users/templates/users/register.html:17
-msgid "Sign In"
-msgstr "تىزىملىتىڭ"
-
-#: uyghur_library/settings.py:138
+#: uyghur_library/settings.py:135
 msgid "English"
 msgstr "ئىنگىلىزچە"
 
-#: uyghur_library/settings.py:139
+#: uyghur_library/settings.py:136
 msgid "Uighur"
 msgstr "ئۇيغۇرتىل"
 
-#: uyghur_library/settings.py:140
+#: uyghur_library/settings.py:137
 msgid "Korean"
 msgstr "كورېيە"
 
-#: library/templates/library/book_list.html:119
-msgid "Read"
-msgstr "توردا ئوقۇش "
-
-#: uyghur_library/urls.py:29
+#: uyghur_library/urls.py:27
 msgid "admin/"
 msgstr ""
+
+#~ msgid "Profile"
+#~ msgstr "ئارخىپ"
+
+#~ msgid "Add Comments"
+#~ msgstr "كىتابغا باھا بېرىڭ"
+
+#~ msgid "Not comments added yet..."
+#~ msgstr "تېخى ئىنكاس يوق"
+
+#~ msgid "Add Comment "
+#~ msgstr "كىتابغا باھا بېرىڭ"
+
+#~ msgid "Download PDF"
+#~ msgstr "چۈشۈرۈش"
+
+#~ msgid "Cover"
+#~ msgstr "مۇقاۋا"
+
+#~ msgid "Title"
+#~ msgstr "كىتاب نامى"
+
+#~ msgid "Download"
+#~ msgstr "چۈشۈرۈش"
+
+#~ msgid "No cover"
+#~ msgstr "مۇقاۋىسىز"
+
+#~ msgid "Search Result Founds"
+#~ msgstr "سىز ئىزدىگەن كىتاب تېپىلدى."
+
+#~ msgid "Nothing found!"
+#~ msgstr "كەچۈرۈڭ، سىز ئىزدىگەن كىتاب تېپىلمىدى."
+
+#~ msgid "Sign Up Now"
+#~ msgstr "ھازىر تىزىملىتىڭ"
+
+#~ msgid "Go to Home Page"
+#~ msgstr "باشبەت"
+
+#~ msgid "Username"
+#~ msgstr "ھىسابات ئىسمى"
+
+#~ msgid "Email"
+#~ msgstr "ئېلخەت "
+
+#~ msgid "Password"
+#~ msgstr "پارول "
+
+#~ msgid "Password confirmation"
+#~ msgstr "پارولنى مۇقىملاشتۇرۇش"
+
+#~ msgid "Sign Up"
+#~ msgstr "تىزىملىتىڭ"
+
+#~ msgid "Sign In"
+#~ msgstr "تىزىملىتىڭ"
+
+#~ msgid "Read"
+#~ msgstr "توردا ئوقۇش "

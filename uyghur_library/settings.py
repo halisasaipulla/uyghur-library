@@ -193,5 +193,33 @@ AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-django_heroku.settings(locals())
+#dowloading file form s3
 
+# import boto3
+# import os
+# s3.download_file('AWS_STORAGE_BUCKET_NAME','The-Machine-Stops.pdf',os.path.join('media/books/pdfs/','test.pdf'))
+
+django_heroku.settings(locals())
+# import os
+# import boto3
+# import botocore
+
+# files = ['media/books/pdfs/']
+
+# bucket = 'AWS_STORAGE_BUCKET_NAME'
+
+# s3 = boto3.resource('s3')
+
+# for file in files:
+#    try:
+#        s3.Bucket(bucket).download_file(file, os.path.basename(file))
+#    except botocore.exceptions.ClientError as e:
+#        if e.response['Error']['Code'] == "404":
+#            print("The object does not exist.")
+#        else:
+#            raise
+# print('here hahah')
+# path='./media/books/covers/'
+# s3=boto3.client('s3')
+# with open(path+'1984bookcovertest.jpeg','wb') as f:
+#     s3.download_file=('uyghur-library','1984bookcover.jpeg',f)

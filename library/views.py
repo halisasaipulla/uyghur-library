@@ -9,6 +9,9 @@ from datetime import datetime
 from django.core.mail import send_mail
 import PyPDF2
 
+# import requests
+# import shutil
+
 
 from django.db.models import Avg
 
@@ -54,9 +57,15 @@ def book_list(request):
         'books': books,
         'categories':categories,
     })
-
+# url='s3://uyghur-library/books/pdfs/'
+# url='https://uyghur-library.s3.us-west-2.amazonaws.com/books/pdfs/GossipFD_85iJSl9.pdf'
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
+    file=str(book.pdf)
+    pdf_file=(file.split('/'))[-1]
+    # print(pdf_file)
+    # print(type(pdf_file))
+   
     num_comments = Comment.objects.filter(book=book).count()
     comments = Comment.objects.filter(book=book)
     average=comments.aggregate(Avg("rate"))["rate__avg"]
@@ -70,7 +79,8 @@ def book_info(request, isbn):
                     'is_favorite': is_favorite,
                     'num_comments': num_comments, 
                     'comments': comments,
-                    'average':average,})
+                    'average':average,
+                    'pdf_file':pdf_file})
 
 def add_favorite(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
@@ -155,3 +165,14 @@ def contact(request):
 #     filename = obj.ISBN.path
 #     response = FileResponse(open(filename, 'rb'))
 #     return response
+# url='s3://uyghur-library/books/pdfs/C15_Capstone_Invite.pdf'
+# url='https://uyghur-library.s3.us-west-2.amazonaws.com/books/pdfs/GossipFD_85iJSl9.pdf'
+# def download_file(url):
+    
+#     local_filename = url.split('/')[-1]
+#     print(local_filename)
+#     with requests.get(url, stream=True) as r:
+#         with open(local_filename, 'wb') as f:
+#             shutil.copyfileobj(r.raw, f)
+
+#     return local_filename

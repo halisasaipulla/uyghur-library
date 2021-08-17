@@ -6,14 +6,14 @@
 
 .card {
     width: 40%; 
-    height: 600px;
+    height: 650px;
     border-radius: 15px;
     border: 0px;
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
 }
 
 .card-body {
-    padding: 1.25 rem;
+    padding: 1.25rem;
     margin: auto;
     padding-top: 5%;
     height: 80%;
@@ -26,27 +26,21 @@ form {
 
 </style>
 
-    <div class="content-section">
-        <div class="content-section">
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Join Today" %}</legend>
-                    <div>{{ form.username| as_crispy_field }}</div>
-                    <div>{{ form.email| as_crispy_field }}</div>
-                    <div>{{ form.password1| as_crispy_field }}</div>
-                </fieldset>
-                <div class="form-group text-center">
-                    <button class="btn btn-outline-info" type="submit">{% translate "Join Today" %}</button>
-                </div> 
-            <div class="border-top pt-3 text-center">
-            <small class="text-muted">
-                {% translate "Already Have An Account?" %}<a class="ml-2" href="{% url 'login' %}"> {% translate "Sign in" %}</a>
-            </small>
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom pb-0 text-center">{% translate "Join Today" %}</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group text-center">
+            <button class="btn btn-outline-info" type="submit">{% translate "Join Today" %}</button>
         </div>
-            </form>
+    <div class="border-top text-center">
+    <small class="text-muted">
+        {% translate "Already Have An Account?" %}<a class="ml-2" href="{% url 'login' %}"> {% translate "Sign in" %}</a>
+    </small>
         </div>
-
-    </div>
-
+    </form>
+</div>
 {% endblock content %}
