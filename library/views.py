@@ -132,7 +132,7 @@ def upload_book(request):
                 new_book.save()
                 return redirect('book_list')
             else:
-                messages.error(request, 'Book already exists.')
+                messages.warning(request, 'Book already exists.')
                 return render(request, 'library/upload_book.html', {'form': BookForm()})
     else:
         form = BookForm()

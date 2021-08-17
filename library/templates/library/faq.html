@@ -2,49 +2,261 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% block content %}
+
 <style>
 
-.card {
-    width: 40%; 
-    height: 600px;
-    border-radius: 15px;
-    border: 0px;
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
-    }
-    
-.card-body {
-    padding: 1.25 rem;
-    margin: auto;
-    padding-top: 5%;
-    height: 80%;
-    width: 100%;
-    }
 
-form {
-    width: 100%;
+html, body {
+  margin: 0;
+  width: 100vw;
+  height: 97vh;
+  background-color: #F6F5F5;
 }
 
+.card-body{
+    border:none;
+    padding:0;
+    
+}
+.faq-search-wrap {
+    padding: 50px 0 60px;
+}
+
+.faq-search-wrap .form-group .form-control,
+.faq-search-wrap .form-group .dd-handle {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.faq-search-wrap .form-group .input-group-append {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.faq-search-wrap .form-group .input-group-append .input-group-text {
+    background: transparent;
+    border: none;
+}
+
+.faq-search-wrap .form-group .input-group-append .input-group-text .feather-icon > svg {
+    height: 18px;
+    width: 18px;
+}
+.bg-teal-light-3 {
+    background-color: #7fcdc1 !important;
+}
+
+.hk-row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+@media (min-width: 576px){
+    .mt-sm-60 {
+        margin-top: 60px !important;
+    }
+}
+.mt-30 {
+    margin-top: 30px !important;
+}
+
+.list-group-item.active {
+    background-color: #00acf0;
+    border-color: #00acf0;
+}
+.accordion .card .card-header.activestate {
+    border-width: 1px;
+}
+.accordion .card .card-header {
+    padding: 0;
+    border-width: 0;
+}
+.card.card-lg .card-header, .card.card-lg .card-footer {
+    padding: .9rem 1.5rem;
+}
+.accordion>.card .card-header {
+    margin-bottom: -1px;
+}
+.card .card-header {
+    background: transparent;
+    border: none;
+}
+.accordion.accordion-type-2 .card .card-header > a.collapsed {
+    color: #324148;
+}
+.accordion .card:first-of-type .card-header:first-child > a {
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+.accordion.accordion-type-2 .card .card-header > a {
+    background: transparent;
+    color: #00acf0;
+    padding-left: 50px;
+}
+.accordion .card .card-header > a.collapsed {
+    color: #324148;
+    background: transparent;
+}
+.accordion .card .card-header > a {
+    background: #00acf0;
+    color: #fff;
+    font-weight: 500;
+    padding: .75rem 1.25rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+a {
+    text-decoration: none;
+    color: #00acf0;
+    -webkit-transition: color 0.2s ease;
+    -moz-transition: color 0.2s ease;
+    transition: color 0.2s ease;
+}
+
+
+.badge.badge-pill {
+    border-radius: 50px;
+}
+.badge.badge-light {
+    background: #eaecec;
+    color: #324148;
+}
+.badge {
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 5px 7px;
+    font-size: 72%;
+    letter-spacing: 0.3px;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    text-transform: capitalize;
+}
+.ml-15 {
+    margin-left: 15px !important;
+}
+
+.accordion.accordion-type-2 .card .card-header > a.collapsed:after {
+    content: "\f158";
+}
+
+.accordion.accordion-type-2 .card .card-header > a::after {
+    display: inline-block;
+    font: normal normal normal 14px/1 'Ionicons';
+    speak: none;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: auto;
+    position: absolute;
+    content: "\f176";
+    font-size: 21px;
+    top: 15px;
+    left: 20px;
+}
+
+.mr-15 {
+    margin-right: 15px !important;
+}
 </style>
 
-    <div class="content-section">
-        <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Frequently Asked Questions" %}</legend>
-        <h5>Why does this website exist?</h5>
-        <h7>Explanation</h7>
-        <h5>What file types are allowed?</h5>
-        <h7>Explanation</h7>
-        <h5>Do I have to create an account to read files?</h5>
-        <h7>Explanation</h7>
-        <h5>Can I share my files?</h5>
-        <h7>Explanation</h7>
-        <h5>How do I upload files</h5>
-        <h7>Explanation</h7>
-        <h5>How do I register an account?</h5>
-        <h7>Explanation</h7>
-        <h5>How do I delete an account</h5>
-        <h7>Explanation</h7>
-        <h5>Can I reset my password?</h5> 
-        <h7>Explanation</h7>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.2.0/css/ionicons.min.css" integrity="sha256-F3Xeb7IIFr1QsWD113kV2JXaEbjhsfpgrKkwZFGIA4E=" crossorigin="anonymous" />
+
+
+    <!-- Row -->
+    <div class="row">
+        <div class="col-xl-12 pa-0">
+            
+            <div class="container mt-sm-60 mt-30">
+                
+                    <div class="col-xl-8">
+                        <div class="card card-lg">
+                            <h3 class="card-header border-bottom-0">
+                                            Frequently asked questions
+                            </h3>
+                            <div class="accordion accordion-type-2 accordion-flush" id="accordion_2">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between activestate">
+                                        <a role="button" data-toggle="collapse" href="#collapse_1i" aria-expanded="true">Do I need to create an account to be able to read books?</a>
+                                    </div>
+                                    <div id="collapse_1i" class="collapse show" data-parent="#accordion_2" role="tabpanel">
+                                        <div class=" text-left pa-15">No, this is an open-source, digital library that allows users to read and download books without creating an account.</div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse_2i" aria-expanded="false">How can I upload files?</a>
+                                    </div>
+                                    <div id="collapse_2i" class="collapse" data-parent="#accordion_2">
+                                        <div class=" pa-15">You need to create an account with us so that we can review the file and approve it before making it available for our users.</div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse_3i" aria-expanded="false">What file types are allowed?</a>
+                                    </div>
+                                    <div id="collapse_3i" class="collapse" data-parent="#accordion_2">
+                                        <div class=" pa-15">Only PDFs are allowed at the moment, but we plan on accepting ePUBs in the future! </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse_4i" aria-expanded="false">How do I reset my password?</a>
+                                    </div>
+                                    <div id="collapse_4i" class="collapse" data-parent="#accordion_2">
+                                        <div class=" pa-15">Please send us a message using the Contact Us form! We will try our best to get back to you within 24-48 hours.</div>
+                                    </div>
+                                </div>
+                              
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse_6i" aria-expanded="false">Can I delete my account?</a>
+                                    </div>
+                                    <div id="collapse_6i" class="collapse" data-parent="#accordion_2">
+                                        <div class=" pa-15">Please send us a message using the Contact Us form! We will try our best to get back to you within 24-48 hours.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- /Row -->
+
 
 
 {% endblock content %}
