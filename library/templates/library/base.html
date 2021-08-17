@@ -35,7 +35,7 @@
               {% get_available_languages as LANGUAGES %}
               {% get_language_info_list for LANGUAGES as languages %}
                 {% for lang in languages %}
-                <li><a class="dropdown-item" href="/{{ lang.code }}/">{{ lang.name_local }}</a></li>
+                <li><a class="dropdown-item p-0" href="/{{ lang.code }}/">{{ lang.name_local }}</a></li>
                 {% endfor %}
             </div>
           </div>
