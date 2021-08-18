@@ -134,6 +134,7 @@ def upload_book(request):
                 pages=reader.numPages
                 new_book.pages = int(float(pages))
                 new_book.save()
+                messages.success(request, 'Book has been successfully uploaded.')
                 return redirect('book_list')
             else:
                 messages.warning(request, 'Book already exists.')

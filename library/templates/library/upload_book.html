@@ -75,6 +75,13 @@ form.scroll {
 }
     
 </style>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert-warning w-25  alert-{{ message.tags }}">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <form class="scroll" method="post" enctype="multipart/form-data">
         
         <fieldset class="form-group text-left">
