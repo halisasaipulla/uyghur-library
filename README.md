@@ -10,20 +10,16 @@ Uyghur Library is a web application that allows users to read and download Uyghu
   <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.08.52.png" />
 
 
-## Skills Assessed
-
-- Following directions and reading comprehension
+## Things we learned
 - Demonstrating understanding of the client-server model, request-response cycle and conventional RESTful routes
 - Driving development with independent research, experimentation, and collaboration
 - Using git as part of the development workflow
-
 - Working with the Django framework:
     - Creating models
     - Creating conventional RESTful CRUD routes for models
     - Reading query parameters to create custom behavior
     - Create unconventional routes for custom behavior
-    - Creating a many-to-many relationship between two models 
-- (Books to Users, Comments to Books, Favorites to Users)
+    - Creating a many-to-many relationship between two models (Books to Users, Comments to Books, Favorites to Users)
 
 ## Installation
 1. Clone this repository.
