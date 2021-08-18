@@ -5,8 +5,8 @@
 Uyghur Library is a web application that allows users to read and download Uyghur books and upload PDFs and a picture from their own gallery as a book cover for their upload. Users are provided a page to bookmark their favorite reads and also leave comments on any book in the library. They have the ability to send inquiries and send messages via the contact form that the administrators will receive. Users also have the option to translate the page in three different languages, for now: Uyghur, English, and Korean.
 
 
-## Demo
- <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.11.51.png" /> 
+## <a href="https://uyghur-library-capstone.herokuapp.com/">Demo</a>
+  <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.11.51.png" /> 
   <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.08.52.png" />
 
 
@@ -51,7 +51,7 @@ python manage.py startapp blog
 python3 manage.py runserver
 9. Open your browser and go to this address http://127.0.0.1:8000/ if everything went well you should see this page.
 
-  <img alt="Django" width="800" src="Landingpage.png" />
+  <img alt="Django" width="800" src="Screen Shot 2021-08-17 at 21.20.06.png" />
 
 10. Define Database Models and make migrations:
 	python manage.py makemigrations 
