@@ -6,6 +6,7 @@ Uyghur Library is a web application that allows users to read and download Uyghu
 
 
 ## Demo
+ <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.11.51.png" /> 
   <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.08.52.png" />
 
 
