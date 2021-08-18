@@ -32,20 +32,23 @@ def faq(request):
     return render(request, 'library/faq.html')
 
 def searchbar(request):
-    if request.method=="GET":
+     if request.method=="GET":
         search = request.GET.get('q')
         if search:
             book = Book.objects.all().filter(title__icontains=search)
-            category = request.GET.get('category')
-            if category == None:
-                books = Book.objects.all()
+            if book:
+                category = request.GET.get('category')
+                if category == None:
+                    books = Book.objects.all()
+                else:
+                    books = Book.objects.filter(category__name=category)
+                categories = Category.objects.all()
+                return render(request, 'library/search.html', {'book':book, 'books': books, 'categories': categories})
             else:
-                books = Book.objects.filter(category__name=category)
-            categories = Category.objects.all()
-            return render(request, 'library/search.html', {'book':book, 'books': books, 'categories': categories})
+                messages.error(request, 'Book not found.')
+                return render(request, 'library/book_list.html')
         else:
             return render(request, 'library/home.html')
-
 def book_list(request):
     category = request.GET.get('category')
     if category == None:
