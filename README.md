@@ -6,9 +6,8 @@ Uyghur Library is a web application that allows users to read and download Uyghu
 
 
 ## Demo
-<a style="float:right" href="https://drive.google.com/file/d/1V9Jtk1-W13fCYQs8ofLgf5UDIszEZUSv/view?usp=sharing" target="_blank">
-  <img alt="Uyghur Library" width="800" src="https://drive.google.com/file/d/1_KOR5_AFRkwE535CH3GGwNvD0P3w-M81/view?usp=sharing" />
-</a>
+  <img alt="Uyghur Library" width="800" src="Landingpage.png" />
+
 
 ## Skills Assessed
 
@@ -51,7 +50,7 @@ python manage.py startapp blog
 python3 manage.py runserver
 9. Open your browser and go to this address http://127.0.0.1:8000/ if everything went well you should see this page.
 
-
+  <img alt="Django" width="800" src="Landingpage.png" />
 
 10. Define Database Models and make migrations:
 	python manage.py makemigrations 
