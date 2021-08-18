@@ -10,7 +10,7 @@ Uyghur Library is a web application that allows users to read and download Uyghu
   <img alt="Uyghur Library" width="800" src="Screen Shot 2021-08-17 at 21.08.52.png" />
 
 
-## Things we learned
+## Things we've learned
 - Demonstrating understanding of the client-server model, request-response cycle and conventional RESTful routes
 - Driving development with independent research, experimentation, and collaboration
 - Using git as part of the development workflow
