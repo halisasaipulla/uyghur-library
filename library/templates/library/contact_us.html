@@ -12,7 +12,7 @@ html, body {
 
 .card {
     width: 40%; 
-    height: 500px;
+    height: 550px;
     border-radius: 15px;
     border: 0px;
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
@@ -30,9 +30,60 @@ form {
     width: 100%;
 }
 
+.button {
+  position: relative;
+  padding: 8px 16px;
+  background: cornflowerblue;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button:active {
+  background: cornflowerblue;
+}
+.button__text {
+  color: #FFFFFF;
+  transition: all 0.2s;
+}
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 </style>
 
     <div class="content-section">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
         <form method="POST" action="" class="contact-form">
             {% csrf_token %}
             <fieldset class="form-group text-left">
@@ -50,9 +101,9 @@ form {
                 <label for="Subject">{% translate "Message" %}*</label>
                 <textarea class="form-control" id="Subject" name="message"></textarea>
             </fieldset>
-            <div class="form-group text-center">
-                <button class="btn btn-outline-info" type="submit">{% translate "Submit" %}</button>
-            </div>
+            <button type="submit" class="button" onclick="this.classList.toggle('button--loading')">
+                <span class="button__text">{% translate "Submit" %}</span>
+            </button>
         </form>
     </div>
 

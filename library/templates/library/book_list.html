@@ -134,7 +134,13 @@ text-align: center;
 
   <div class="album py-5">
     <div class="container scroll">
-
+        {% if messages %}
+        {% for message in messages %}
+          <div class=" span4 offset4 alert alert-info  alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
       <div class="row pb-3">
         {% for book in books %}
         <div class="col-md-2">

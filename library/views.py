@@ -56,6 +56,7 @@ def book_list(request):
     else:
         books = Book.objects.filter(category__name=category)
     categories = Category.objects.all()
+    
     return render(request, 'library/book_list.html', {
         'books': books,
         'categories':categories,
@@ -160,6 +161,7 @@ def contact(request):
         From: {}
         '''.format(data['message'], data['email'])
         send_mail(data['subject'], message, '', ['capstoneprojectadac15@gmail.com'])
+        messages.success(request, 'Message sent! You should receive a response within 24-48 hours.')
     return render(request, 'library/contact_us.html', {})
 
 
