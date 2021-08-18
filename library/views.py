@@ -45,7 +45,7 @@ def searchbar(request):
                 categories = Category.objects.all()
                 return render(request, 'library/search.html', {'book':book, 'books': books, 'categories': categories})
             else:
-                messages.error(request, 'Book not found.')
+                messages.warning(request, 'Book not found.')
                 return render(request, 'library/book_list.html')
         else:
             return render(request, 'library/home.html')

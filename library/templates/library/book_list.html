@@ -162,13 +162,7 @@ text-align: center;
         {% endfor %}
       </div>    
         <div class="container">
-            {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-warning alert-{{ message.tags }}">
-                {{ message }}
-                </div>
-            {% endfor %}
-            {% endif %}
+         
           <p>
             <a href="{% url 'book_list' %}">{% translate "Back to top" %}</a>
           </p>
