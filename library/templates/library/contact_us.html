@@ -4,10 +4,10 @@
 {% block content %}
 <style>
 html, body {
-  margin: 0;
-  width: 100vw;
-  height: 97vh;
-  background-color: #F6F5F5;
+    margin: 0;
+    width: 100vw;
+    height: 97vh;
+    background-color: #F6F5F5;
 }
 
 .card {
@@ -31,82 +31,80 @@ form {
 }
 
 .button {
-  position: relative;
-  padding: 8px 16px;
-  background: cornflowerblue;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
+    position: relative;
+    padding: 8px 16px;
+    background: cornflowerblue;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .button:active {
-  background: cornflowerblue;
+    background: cornflowerblue;
 }
 .button__text {
-  color: #FFFFFF;
-  transition: all 0.2s;
+    color: #FFFFFF;
+    transition: all 0.2s;
 }
 .button--loading .button__text {
-  visibility: hidden;
-  opacity: 0;
+    visibility: hidden;
+    opacity: 0;
 }
 .button--loading::after {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  border: 4px solid transparent;
-  border-top-color: #FFFFFF;
-  border-radius: 50%;
-  animation: button-loading-spinner 1s ease infinite;
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
 }
 @keyframes button-loading-spinner {
-  from {
-    transform: rotate(0turn);
-  }
-  to {
-    transform: rotate(1turn);
-  }
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }
 
 </style>
-
-    <div class="content-section">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-success alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
-        <form method="POST" action="" class="contact-form">
-            {% csrf_token %}
-            <fieldset class="form-group text-left">
-                <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Contact Us" %}</legend>
-                {{ form|crispy }}
-                <label for="fname" name ="name">{% translate "Name" %}*</label>
-                <input type="text" id = "fname" class="form-control" name="name" >
-                
-                <label for="exampleInputEmail1">{% translate "Email address" %}*</label>  
-                <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp" name="email"> 
-    
-                <label for="Subject">{% translate "Subject" %}*</label>
-                <input id="Subject" class="form-control" name="subject"></textarea>
-                
-                <label for="Subject">{% translate "Message" %}*</label>
-                <textarea class="form-control" id="Subject" name="message"></textarea>
-            </fieldset>
-            <button type="submit" class="button" onclick="this.classList.toggle('button--loading')">
-                <span class="button__text">{% translate "Submit" %}</span>
-            </button>
-        </form>
+<div class="content-section">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-{{ message.tags }}">
+        {{ message }}
     </div>
+    {% endfor %}
+    {% endif %}
+    <form method="POST" action="" class="contact-form">
+        {% csrf_token %}
+        <fieldset class="form-group text-left">
+            <legend class="border-bottom mb-4 pb-2 text-center">{% translate "Contact Us" %}</legend>
+            {{ form|crispy }}
+            <label for="fname" name ="name">{% translate "Name" %}*</label>
+            <input type="text" id = "fname" class="form-control" name="name" >
+            
+            <label for="exampleInputEmail1">{% translate "Email address" %}*</label>  
+            <input class="form-control" id = "exampleInputEmail1"  aria-describedby="emailHelp" name="email"> 
 
+            <label for="Subject">{% translate "Subject" %}*</label>
+            <input id="Subject" class="form-control" name="subject"></textarea>
+            
+            <label for="Subject">{% translate "Message" %}*</label>
+            <textarea class="form-control" id="Subject" name="message"></textarea>
+        </fieldset>
+        <button type="submit" class="button" onclick="this.classList.toggle('button--loading')">
+            <span class="button__text">{% translate "Submit" %}</span>
+        </button>
+    </form>
+</div>
 
 {% endblock content %}
 
