@@ -1,18 +1,3 @@
-"""uyghur_library URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
@@ -30,7 +15,6 @@ urlpatterns = [
     path('search/', views.searchbar, name='search'),
     path('books/', views.book_list, name='book_list'),
     path('books/info/<str:isbn>/', views.book_info, name='book_info'),
-    # path('books/info/<str:isbn>/download/', views.download_file, name='download_pdf'),
     path('books/info/<str:isbn>/add_favorite/', views.add_favorite, name='add_favorite'),
     path('books/info/<str:isbn>/add_comment/', views.add_comment, name='add_comment'),
     path('books/info/<str:isbn>/delete-comment/<int:comment_pk>/', views.delete_comment, name='delete-comment'),
@@ -46,6 +30,6 @@ urlpatterns = [
 urlpatterns += i18n_patterns (
     path('', include('library.urls')),
 )
-# just for development purposes
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

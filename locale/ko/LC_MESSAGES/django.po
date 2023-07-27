@@ -18,8 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-
-
 #: library/templates/library/base.html:11
 #: library/templates/library/base.html:44
 #: library/templates/library/home.html:10

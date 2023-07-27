@@ -17,10 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-
-
-
-
 #: library/templates/library/base.html:11
 #: library/templates/library/base.html:44
 #: library/templates/library/home.html:11

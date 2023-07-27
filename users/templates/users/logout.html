@@ -4,46 +4,46 @@
 
 <style>
 html, body {
-  margin: 0;
-  width: 100vw;
-  height: 97vh;
-  background-color: #F6F5F5;
+    margin: 0;
+    width: 100vw;
+    height: 97vh;
+    background-color: #F6F5F5;
 }
 
-  .card {
+.card {
     width: 40%; 
     height: 90%;
     border-radius: 15px;
     border: 0px;
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
-  }
-  
-  .card-body {
+}
+
+.card-body {
     padding: 1.25 rem;
     margin: auto;
     padding-top: 5%;
     height: 80%;
     
-    }
+}
 
 </style>
 
-  <div class="content-section">
+<div class="content-section">
     <div class="album">
-      <div class="container">
-          <h3 class="border-bottom pb-3">{% translate "You have been logged out" %}</h3>
-          <div class="col pt-3">
-              <small class="text-muted">
-                  <a href="{% url 'login' %}">{% translate "Log In Again" %}</a>
-              </small>
-          </div>
-          <div class="col pt-3">
-            <small class="text-muted">
-              <a href="{% url 'library-home' %}">{% translate "Return to home page" %}</a>
-            </small>
+        <div class="container">
+            <h3 class="border-bottom pb-3">{% translate "You have been logged out" %}</h3>
+            <div class="col pt-3">
+                <small class="text-muted">
+                    <a href="{% url 'login' %}">{% translate "Log In Again" %}</a>
+                </small>
+            </div>
+            <div class="col pt-3">
+                <small class="text-muted">
+                    <a href="{% url 'library-home' %}">{% translate "Return to home page" %}</a>
+                </small>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 {% endblock %}

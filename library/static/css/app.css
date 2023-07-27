@@ -1,98 +1,98 @@
 html, body {
-  margin: 0;
-  width: 100vw;
-  height: 97vh;
-  background-color: #F6F5F5;
+    margin: 0;
+    width: 100vw;
+    height: 97vh;
+    background-color: #F6F5F5;
 }
 ul {
-  list-style-type: none;
-  overflow: hidden;
+    list-style-type: none;
+    overflow: hidden;
 }
 li {
-  padding: 1em;
-  float: right;
+    padding: 1em;
+    float: right;
 }
 li a {
-  color: cornflowerblue;
-  display: block;
-  text-align: center;
-  padding: 10px 10px;
-  text-decoration: none;
-  font-size:14px;
+    color: cornflowerblue;
+    display: block;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size:14px;
 }
 .home-button {
-  color: cornflowerblue;
-  display: block;
-  text-align: center;
-  padding: 10px 10px;
-  text-decoration: none;
+    color: cornflowerblue;
+    display: block;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
 }
 .home-button {
-  float: left;
+    float: left;
 }
 li a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 .grid{
-  height:23px;
-  position:relative;
-  bottom:4px;
+    height:23px;
+    position:relative;
+    bottom:4px;
 }
 .signbutton{
-  background-color: #4885ED;
-  color: #fff;
-  border:none;
-  border-radius:3px;
-  padding:7px 10px;
-  position:relative;
-  bottom:7px;
-  font-weight:bold;
+    background-color: #4885ED;
+    color: #fff;
+    border:none;
+    border-radius:3px;
+    padding:7px 10px;
+    position:relative;
+    bottom:7px;
+    font-weight:bold;
 }
 .logo{
-  margin-top:200px;
-  margin-bottom:20px;
+    margin-top:200px;
+    margin-bottom:20px;
 }
 .bar{
-  margin:0 auto;
-  width:350px;
-  border-radius:30px;
-  border:1px solid #DCDCDC;
+    margin:0 auto;
+    width:350px;
+    border-radius:30px;
+    border:1px solid #DCDCDC; 
 }
 .bar:hover{
-  box-shadow: 1px 1px 8px 1px #DCDCDC;
+    box-shadow: 1px 1px 8px 1px #DCDCDC;
 }
 .bar:focus-within{
-  box-shadow: 1px 1px 8px 1px #DCDCDC;
-  outline:none;
+    box-shadow: 1px 1px 8px 1px #DCDCDC;
+    outline:none;
 }
 .searchbar{
-  height:45px;
-  border:none;
-  width:200px;
-  font-size:16px;
-  outline: none;
+    height:45px;
+    border:none;
+    width:200px;
+    font-size:16px;
+    outline: none;
 }
 .voice{
-  height:20px;
-  position:relative;
-  top:5px;
+    height:20px;
+    position:relative;
+    top:5px;
 }
 .button{
-  border:none;
-  font-size:15px;
+    border:none;
+    font-size:15px;
 }
 .nounderline {
-  text-decoration: none!important;
-  color: none;
+    text-decoration: none!important;
+    color: none;
 }
 .button:hover{
-  border: 1px solid #C8C8C8;
+    border: 1px solid #C8C8C8;
 }
 .button:focus{
-  border:1px solid #4885ED;
+    border:1px solid #4885ED;
 }
 footer {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }

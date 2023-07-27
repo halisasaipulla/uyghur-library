@@ -4,10 +4,10 @@
 {% block content %}
 <style>
 html, body {
-  margin: 0;
-  width: 100vw;
-  height: 97vh;
-  background-color: #F6F5F5;
+    margin: 0;
+    width: 100vw;
+    height: 97vh;
+    background-color: #F6F5F5;
 }
 
 .card {
@@ -42,10 +42,10 @@ form {
         <div class="form-group text-center">
             <button class="btn btn-outline-info" type="submit">{% translate "Join Today" %}</button>
         </div>
-    <div class="border-top text-center">
-    <small class="text-muted">
-        {% translate "Already Have An Account?" %}<a class="ml-2" href="{% url 'login' %}"> {% translate "Sign in" %}</a>
-    </small>
+        <div class="border-top text-center">
+            <small class="text-muted">
+                {% translate "Already Have An Account?" %}<a class="ml-2" href="{% url 'login' %}"> {% translate "Sign in" %}</a>
+            </small>
         </div>
     </form>
 </div>

@@ -1,4 +1,5 @@
 import os
+import PyPDF2
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language, activate, gettext
@@ -7,12 +8,6 @@ from .models import Book, Category, Comment
 from django.contrib import messages
 from datetime import datetime
 from django.core.mail import send_mail
-import PyPDF2
-
-# import requests
-# import shutil
-
-
 from django.db.models import Avg
 
 def home(request):
@@ -32,7 +27,7 @@ def faq(request):
     return render(request, 'library/faq.html')
 
 def searchbar(request):
-     if request.method=="GET":
+    if request.method=="GET":
         search = request.GET.get('q')
         if search:
             book = Book.objects.all().filter(title__icontains=search)
@@ -49,6 +44,7 @@ def searchbar(request):
                 return render(request, 'library/book_list.html')
         else:
             return render(request, 'library/home.html')
+
 def book_list(request):
     category = request.GET.get('category')
     if category == None:
@@ -61,15 +57,11 @@ def book_list(request):
         'books': books,
         'categories':categories,
     })
-# url='s3://uyghur-library/books/pdfs/'
-# url='https://uyghur-library.s3.us-west-2.amazonaws.com/books/pdfs/GossipFD_85iJSl9.pdf'
+
 def book_info(request, isbn):
     book = get_object_or_404(Book, ISBN=isbn)
     file=str(book.pdf)
     pdf_file=(file.split('/'))[-1]
-    # print(pdf_file)
-    # print(type(pdf_file))
-   
     num_comments = Comment.objects.filter(book=book).count()
     comments = Comment.objects.filter(book=book)
     average=comments.aggregate(Avg("rate"))["rate__avg"]
@@ -165,20 +157,3 @@ def contact(request):
         messages.success(request, 'Message sent! You should receive a response within 24-48 hours.')
     return render(request, 'library/contact_us.html', {})
 
-
-# def download(request, id):
-#     obj = Book.objects.get(id=id)
-#     filename = obj.ISBN.path
-#     response = FileResponse(open(filename, 'rb'))
-#     return response
-# url='s3://uyghur-library/books/pdfs/C15_Capstone_Invite.pdf'
-# url='https://uyghur-library.s3.us-west-2.amazonaws.com/books/pdfs/GossipFD_85iJSl9.pdf'
-# def download_file(url):
-    
-#     local_filename = url.split('/')[-1]
-#     print(local_filename)
-#     with requests.get(url, stream=True) as r:
-#         with open(local_filename, 'wb') as f:
-#             shutil.copyfileobj(r.raw, f)
-
-#     return local_filename

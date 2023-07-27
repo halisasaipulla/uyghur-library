@@ -13,6 +13,3 @@ class CommentForm(forms.ModelForm):
         fields = ('comment_body', 'rate',)
 
 
-
-# include a drop down menu for category and save it to database 
-

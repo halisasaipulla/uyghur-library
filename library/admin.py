@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Book, Comment, Category
-# Register your models here.
 
 class Books(admin.ModelAdmin):
     list_display = ("title", "author",'pdf', 'cover', 'category')
