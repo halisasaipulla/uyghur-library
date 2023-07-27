@@ -130,8 +130,8 @@ def upload_book(request):
             if not check_book:
                 new_book = form.save(commit=False)
                 pdf = request.FILES['pdf']
-                reader = PyPDF2.PdfFileReader(pdf)
-                pages=reader.numPages
+                reader = PyPDF2.PdfReader(pdf)
+                pages=len(reader.pages)
                 new_book.pages = int(float(pages))
                 new_book.save()
                 messages.success(request, 'Book has been successfully uploaded.')
